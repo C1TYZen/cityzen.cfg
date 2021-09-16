@@ -47,10 +47,11 @@ endif
 
 call plug#begin('~/.vim/bundle')
 Plug 'ErichDonGubler/vim-sublime-monokai'
-Plug 'vim-airline/vim-airline'
-Plug 'tomasiser/vim-code-dark'
-Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'ervandew/supertab'
+Plug 'scrooloose/nerdtree'
+Plug 'tomasiser/vim-code-dark'
+Plug 'vim-airline/vim-airline'
 call plug#end()
 
 "===============
