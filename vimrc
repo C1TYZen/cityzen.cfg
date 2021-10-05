@@ -1,27 +1,39 @@
-"   ▄████▄   ██▓▄▄▄█████▓▓██   ██▓▒███████▒▓█████  ███▄    █       ▄████▄    █████▒ ▄████
-"  ▒██▀ ▀█  ▓██▒▓  ██▒ ▓▒ ▒██  ██▒▒ ▒ ▒ ▄▀░▓█   ▀  ██ ▀█   █      ▒██▀ ▀█  ▓██   ▒ ██▒ ▀█▒
-"  ▒▓█    ▄ ▒██▒▒ ▓██░ ▒░  ▒██ ██░░ ▒ ▄▀▒░ ▒███   ▓██  ▀█ ██▒     ▒▓█    ▄ ▒████ ░▒██░▄▄▄░
-"  ▒▓▓▄ ▄██▒░██░░ ▓██▓ ░   ░ ▐██▓░  ▄▀▒   ░▒▓█  ▄ ▓██▒  ▐▌██▒     ▒▓▓▄ ▄██▒░▓█▒  ░░▓█  ██▓
-"  ▒ ▓███▀ ░░██░  ▒██▒ ░   ░ ██▒▓░▒███████▒░▒████▒▒██░   ▓██░ ██▓ ▒ ▓███▀ ░░▒█░   ░▒▓███▀▒
-"  ░ ░▒ ▒  ░░▓    ▒ ░░      ██▒▒▒ ░▒▒ ▓░▒░▒░░ ▒░ ░░ ▒░   ▒ ▒  ▒▓▒ ░ ░▒ ▒  ░ ▒ ░    ░▒   ▒
-"    ░  ▒    ▒ ░    ░     ▓██ ░▒░ ░░▒ ▒ ░ ▒ ░ ░  ░░ ░░   ░ ▒░ ░▒    ░  ▒    ░       ░   ░
-"  ░         ▒ ░  ░       ▒ ▒ ░░  ░ ░ ░ ░ ░   ░      ░   ░ ░  ░   ░         ░ ░   ░ ░   ░
-"  ░ ░       ░            ░ ░       ░ ░       ░  ░         ░   ░  ░ ░                   ░
-"  ░                      ░ ░     ░                            ░  ░
+"	▄████▄	 ██▓▄▄▄█████▓▓██   ██▓▒███████▒▓█████  ███▄    █	   ▄████▄	 █████▒ ▄████
+"  ▒██▀ ▀█	▓██▒▓  ██▒ ▓▒ ▒██  ██▒▒ ▒ ▒ ▄▀░▓█	▀  ██ ▀█   █	  ▒██▀ ▀█  ▓██	 ▒ ██▒ ▀█▒
+"  ▒▓█	  ▄ ▒██▒▒ ▓██░ ▒░  ▒██ ██░░ ▒ ▄▀▒░ ▒███   ▓██  ▀█ ██▒	  ▒▓█	 ▄ ▒████ ░▒██░▄▄▄░
+"  ▒▓▓▄ ▄██▒░██░░ ▓██▓ ░   ░ ▐██▓░	▄▀▒   ░▒▓█	▄ ▓██▒	▐▌██▒	  ▒▓▓▄ ▄██▒░▓█▒  ░░▓█  ██▓
+"  ▒ ▓███▀ ░░██░  ▒██▒ ░   ░ ██▒▓░▒███████▒░▒████▒▒██░	 ▓██░ ██▓ ▒ ▓███▀ ░░▒█░   ░▒▓███▀▒
+"  ░ ░▒ ▒  ░░▓	  ▒ ░░		██▒▒▒ ░▒▒ ▓░▒░▒░░ ▒░ ░░ ▒░	 ▒ ▒  ▒▓▒ ░ ░▒ ▒  ░ ▒ ░    ░▒	▒
+"	 ░	▒	 ▒ ░	░	  ▓██ ░▒░ ░░▒ ▒ ░ ▒ ░ ░  ░░ ░░	 ░ ▒░ ░▒	░  ▒	░		░	░
+"  ░		 ▒ ░  ░		  ▒ ▒ ░░  ░ ░ ░ ░ ░   ░		 ░	 ░ ░  ░   ░			░ ░   ░ ░	░
+"  ░ ░		 ░			  ░ ░		░ ░		  ░  ░		   ░   ░  ░ ░					░
+"  ░					  ░ ░	  ░							   ░  ░
 
 "========
 "SETTINGS
 "========
-set encoding=utf-8
+
 set nocompatible
-set number relativenumber
-set list listchars=tab:\ \ ,trail:·,lead:░,nbsp:~
-set shiftwidth=4
+set encoding=utf-8
+
+set number
+set relativenumber
+
+set list
+set listchars=tab:\ \ ,trail:·,lead:░,nbsp:~
+
 set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 set noexpandtab
+set autoindent
+set smartindent
+
 set wildmenu
 set showcmd
+
 set colorcolumn=80
+set cursorline
 set hlsearch
 
 syntax enable
@@ -29,15 +41,19 @@ syntax enable
 "====
 "KEYS
 "====
+
 map <F1> :%retab! <CR>
 "q-save
 map <F2> :w! <CR>
 "q-load
 map <F3> :e! <CR>
+"go to definition
+map <F12> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 "=======
 "PLUGINS
 "=======
+
 filetype plugin indent on
 if empty(glob('~/.vim/autoload/plug.vim'))
 	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -48,15 +64,17 @@ endif
 call plug#begin('~/.vim/bundle')
 Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'ervandew/supertab'
 Plug 'scrooloose/nerdtree'
 Plug 'tomasiser/vim-code-dark'
 Plug 'vim-airline/vim-airline'
+Plug 'majutsushi/tagbar'
+Plug 'valloric/youcompleteme'
 call plug#end()
 
 "===============
 "PLUGIN SETTINGS
 "===============
+
 colorscheme codedark
 
 let g:airline_powerline_fonts = 1
@@ -66,3 +84,11 @@ let g:Powerline_symbols='unicode'
 let g:airline#extensions#xkblayout#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 
+"===========
+"PLUGIN KEYS
+"===========
+
+"NerdTree настройки
+map <F3> :NERDTreeToggle<CR>
+"TagBar настройки
+map <F4> :TagbarToggle<CR>
