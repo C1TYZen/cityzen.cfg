@@ -15,6 +15,8 @@
 
 set nocompatible
 set encoding=utf-8
+set exrc
+set secure
 
 set number
 set relativenumber
@@ -46,7 +48,7 @@ map <F1> :%retab! <CR>
 "q-save
 map <F2> :w! <CR>
 "q-load
-map <F3> :e! <CR>
+"map <F3> :e! <CR>
 "go to definition
 map <F12> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
@@ -62,13 +64,13 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundle')
-Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'scrooloose/nerdtree'
 Plug 'tomasiser/vim-code-dark'
 Plug 'vim-airline/vim-airline'
 Plug 'majutsushi/tagbar'
 Plug 'valloric/youcompleteme'
+Plug 'vim-scripts/OmniCppComplete'
 call plug#end()
 
 "===============
@@ -83,6 +85,13 @@ let g:airline_section_z = "\ue0a1:%l/%L Col:%c"
 let g:Powerline_symbols='unicode'
 let g:airline#extensions#xkblayout#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 "===========
 "PLUGIN KEYS
