@@ -49,8 +49,19 @@ map <F1> :%retab! <CR>
 map <F2> :w! <CR>
 "q-load
 "map <F3> :e! <CR>
+set pastetoggle=<F5>
 "go to definition
 map <F12> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+"save
+" 1. Allow to use Ctrl-s and Ctrl-q as keybinds
+" 2. Restore default behaviour when leaving Vim.
+silent !stty -ixon
+autocmd VimLeave * silent !stty ixon
+
+noremap  <silent> <C-S> :update<CR>
+vnoremap <silent> <C-S> <C-C>:update<CR>
+inoremap <silent> <C-S> <C-O>:update<CR>
 
 "=======
 "PLUGINS
@@ -99,5 +110,7 @@ let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
 "NerdTree настройки
 map <F3> :NERDTreeToggle<CR>
+imap <F3> <C-O>:NERDTreeToggle<CR>
 "TagBar настройки
 map <F4> :TagbarToggle<CR>
+imap <F4> <C-O>:TagbarToggle<CR>

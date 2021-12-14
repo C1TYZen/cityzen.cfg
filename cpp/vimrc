@@ -40,7 +40,6 @@ Plug 'dyng/ctrlsf.vim'
 Plug 'fholgado/minibufexpl.vim'
 
 " View
-Plug 'Yggdroot/indentLine'
 Plug 'airblade/vim-gitgutter'
 
 " Linting
@@ -125,10 +124,10 @@ set hidden
 set visualbell
 
 " Indent using four spaces
-set expandtab smarttab
+set noexpandtab
 set tabstop=4
 set shiftwidth=4
-set softtabstop=4
+"set softtabstop=4
 
 set gcr=a:block-blinkon0
 
@@ -286,12 +285,6 @@ let g:move_key_modifier = 'C'
 
 map <SPACE> <Plug>(wildfire-fuel)
 vmap <C-SPACE> <Plug>(wildfire-water)
-
-" ----------------------------------------------------------------------------
-" indentLine
-" ----------------------------------------------------------------------------
-
-let g:indentLine_char = '│'
 
 " ----------------------------------------------------------------------------
 " tagbar
