@@ -83,6 +83,7 @@ set history=500
 set nu
 
 " set nowrap
+set wrap linebreak
 
 " Autoindent when starting new line
 set autoindent
