@@ -75,13 +75,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundle')
-Plug 'dhruvasagar/vim-table-mode'
 Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
+Plug 'ervandew/supertab'
+Plug 'dhruvasagar/vim-table-mode'
 Plug 'tomasiser/vim-code-dark'
 Plug 'vim-airline/vim-airline'
-Plug 'majutsushi/tagbar'
-Plug 'valloric/youcompleteme'
-Plug 'vim-scripts/OmniCppComplete'
 call plug#end()
 
 "===============
