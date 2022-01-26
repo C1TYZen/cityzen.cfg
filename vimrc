@@ -80,6 +80,7 @@ Plug 'majutsushi/tagbar'
 Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'tomasiser/vim-code-dark'
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 call plug#end()
 
@@ -87,7 +88,9 @@ call plug#end()
 "PLUGIN SETTINGS
 "===============
 
-colorscheme codedark
+"colorscheme codedark
+set background=dark
+colorscheme gruvbox
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#keymap#enabled = 0
@@ -101,8 +104,6 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-
 "===========
 "PLUGIN KEYS
 "===========
@@ -113,3 +114,4 @@ imap <F3> <C-O>:NERDTreeToggle<CR>
 "TagBar настройки
 map <F4> :TagbarToggle<CR>
 imap <F4> <C-O>:TagbarToggle<CR>
+
