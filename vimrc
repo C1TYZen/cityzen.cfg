@@ -1,17 +1,17 @@
-"	▄████▄	 ██▓▄▄▄█████▓▓██   ██▓▒███████▒▓█████  ███▄    █	   ▄████▄	 █████▒ ▄████
-"  ▒██▀ ▀█	▓██▒▓  ██▒ ▓▒ ▒██  ██▒▒ ▒ ▒ ▄▀░▓█	▀  ██ ▀█   █	  ▒██▀ ▀█  ▓██	 ▒ ██▒ ▀█▒
-"  ▒▓█	  ▄ ▒██▒▒ ▓██░ ▒░  ▒██ ██░░ ▒ ▄▀▒░ ▒███   ▓██  ▀█ ██▒	  ▒▓█	 ▄ ▒████ ░▒██░▄▄▄░
-"  ▒▓▓▄ ▄██▒░██░░ ▓██▓ ░   ░ ▐██▓░	▄▀▒   ░▒▓█	▄ ▓██▒	▐▌██▒	  ▒▓▓▄ ▄██▒░▓█▒  ░░▓█  ██▓
-"  ▒ ▓███▀ ░░██░  ▒██▒ ░   ░ ██▒▓░▒███████▒░▒████▒▒██░	 ▓██░ ██▓ ▒ ▓███▀ ░░▒█░   ░▒▓███▀▒
-"  ░ ░▒ ▒  ░░▓	  ▒ ░░		██▒▒▒ ░▒▒ ▓░▒░▒░░ ▒░ ░░ ▒░	 ▒ ▒  ▒▓▒ ░ ░▒ ▒  ░ ▒ ░    ░▒	▒
-"	 ░	▒	 ▒ ░	░	  ▓██ ░▒░ ░░▒ ▒ ░ ▒ ░ ░  ░░ ░░	 ░ ▒░ ░▒	░  ▒	░		░	░
-"  ░		 ▒ ░  ░		  ▒ ▒ ░░  ░ ░ ░ ░ ░   ░		 ░	 ░ ░  ░   ░			░ ░   ░ ░	░
-"  ░ ░		 ░			  ░ ░		░ ░		  ░  ░		   ░   ░  ░ ░					░
-"  ░					  ░ ░	  ░							   ░  ░
+"  ▄████▄   ██▓▄▄▄█████▓▓██   ██▓▒███████▒▓█████  ███▄    █       ▄████▄    █████▒ ▄████
+" ▒██▀ ▀█  ▓██▒▓  ██▒ ▓▒ ▒██  ██▒▒ ▒ ▒ ▄▀░▓█   ▀  ██ ▀█   █      ▒██▀ ▀█  ▓██   ▒ ██▒ ▀█▒
+" ▒▓█    ▄ ▒██▒▒ ▓██░ ▒░  ▒██ ██░░ ▒ ▄▀▒░ ▒███   ▓██  ▀█ ██▒     ▒▓█    ▄ ▒████ ░▒██░▄▄▄░
+" ▒▓▓▄ ▄██▒░██░░ ▓██▓ ░   ░ ▐██▓░  ▄▀▒   ░▒▓█  ▄ ▓██▒  ▐▌██▒     ▒▓▓▄ ▄██▒░▓█▒  ░░▓█  ██▓
+" ▒ ▓███▀ ░░██░  ▒██▒ ░   ░ ██▒▓░▒███████▒░▒████▒▒██░   ▓██░ ██▓ ▒ ▓███▀ ░░▒█░   ░▒▓███▀▒
+" ░ ░▒ ▒  ░░▓    ▒ ░░      ██▒▒▒ ░▒▒ ▓░▒░▒░░ ▒░ ░░ ▒░   ▒ ▒  ▒▓▒ ░ ░▒ ▒  ░ ▒ ░    ░▒   ▒
+"   ░  ▒    ▒ ░    ░     ▓██ ░▒░ ░░▒ ▒ ░ ▒ ░ ░  ░░ ░░   ░ ▒░ ░▒    ░  ▒    ░       ░   ░
+" ░         ▒ ░  ░       ▒ ▒ ░░  ░ ░ ░ ░ ░   ░      ░   ░ ░  ░   ░         ░ ░   ░ ░   ░
+" ░ ░       ░            ░ ░       ░ ░       ░  ░         ░   ░  ░ ░                   ░
+" ░                      ░ ░     ░                            ░  ░
 
-"========
-"SETTINGS
-"========
+"==========
+" SETTINGS
+"==========
 
 set nocompatible
 set encoding=utf-8
@@ -40,32 +40,32 @@ set hlsearch
 
 syntax enable
 
-"====
-"KEYS
-"====
+"======
+" KEYS
+"======
 
 map <F1> :%retab! <CR>
-"q-save
-map <F2> :w! <CR>
-"q-load
-"map <F3> :e! <CR>
 set pastetoggle=<F5>
-"go to definition
-map <F12> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
 
-"save
+" Save
 " 1. Allow to use Ctrl-s and Ctrl-q as keybinds
 " 2. Restore default behaviour when leaving Vim.
 silent !stty -ixon
 autocmd VimLeave * silent !stty ixon
-
 noremap  <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
 
-"=======
-"PLUGINS
-"=======
+" Go to definition
+map <F12> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
+" C-\ Open the definition in a new tab
+map <C-\> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
+" C-W + C-\ Open the definition in a vertical split
+map <C-W><C-\> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+"=========
+" PLUGINS
+"=========
 
 filetype plugin indent on
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -84,9 +84,9 @@ Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 call plug#end()
 
-"===============
-"PLUGIN SETTINGS
-"===============
+"=================
+" PLUGIN SETTINGS
+"=================
 
 "colorscheme codedark
 set background=dark
@@ -104,14 +104,14 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-"===========
-"PLUGIN KEYS
-"===========
+"=============
+" PLUGIN KEYS
+"=============
 
-"NerdTree настройки
+" NerdTree
 map <F3> :NERDTreeToggle<CR>
 imap <F3> <C-O>:NERDTreeToggle<CR>
-"TagBar настройки
+" TagBar
 map <F4> :TagbarToggle<CR>
 imap <F4> <C-O>:TagbarToggle<CR>
 
