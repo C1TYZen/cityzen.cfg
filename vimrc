@@ -67,18 +67,10 @@ map <F12> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
 map <C-F12> :vs <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Copy - CTRL-C
-vnoremap <C-C> "+y
+vnoremap <C-C> "*y
 
 " Toggle line numbers - F8
 map <F8> :set number! <CR> :set relativenumber! <CR>
-
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
 
 "=========
 " PLUGINS
