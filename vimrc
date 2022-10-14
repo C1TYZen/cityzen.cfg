@@ -39,7 +39,7 @@ set cursorline
 set hlsearch
 
 set splitright
-" set splitbelow
+set splitbelow
 
 syntax enable
 
@@ -72,6 +72,14 @@ vnoremap <C-C> "+y
 " Toggle line numbers - F8
 map <F8> :set number! <CR> :set relativenumber! <CR>
 
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
 "=========
 " PLUGINS
 "=========
@@ -84,47 +92,53 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/bundle')
-" Side panels
+"" Side panels
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 
-" Design
-Plug 'tomasiser/vim-code-dark'
+"" Design
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 
-" Languages
+"" Languages
 Plug 'vlime/vlime', {'rtp': 'vim/'}
+Plug 'w0rp/ale'
+"Lisp edit
+Plug 'kovisoft/paredit'
 
-" Misc
+"" Misc
 Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'farmergreg/vim-lastplace'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 "=================
 " PLUGIN SETTINGS
 "=================
 
-"colorscheme codedark
+" Gruvbox
 set background=dark
 colorscheme gruvbox
 
+" Airline
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#keymap#enabled = 0
-let g:airline_section_z = "\ue0a1:%l/%L Col:%c"
-let g:Powerline_symbols='unicode'
+let g:airline_section_z = "L/N:%l/%L Col:%c"
+let g:Powerline_symbols = 'unicode'
 let g:airline#extensions#xkblayout#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 
+" Syntatic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-"=============
-" PLUGIN KEYS
-"=============
+" Rainbow parentheses
+au BufEnter * :RainbowParentheses
+let g:rainbow#max_level = 32
 
 " NerdTree
 map <F3> :NERDTreeToggle<CR>
