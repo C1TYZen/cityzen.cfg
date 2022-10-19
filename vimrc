@@ -72,6 +72,10 @@ vnoremap <C-C> "*y
 " Toggle line numbers - F8
 map <F8> :set number! <CR> :set relativenumber! <CR>
 
+map gn :bn<CR>
+map gp :bp<CR>
+map gd :bp<CR> :bd#<CR>
+
 "=========
 " PLUGINS
 "=========
