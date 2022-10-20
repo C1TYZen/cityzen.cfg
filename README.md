@@ -1,2 +1,2 @@
-# vimcfg
-vimcfg
+# cfg
+cfg
