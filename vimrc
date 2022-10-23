@@ -74,7 +74,8 @@ map <F8> :set number! <CR> :set relativenumber! <CR>
 
 map bn :bn<CR>
 map bp :bp<CR>
-map bd :bp<CR> :bd#<CR>
+map bd :b#<CR> :bd#<CR>
+map bl :buffers<CR>
 
 "=========
 " PLUGINS
@@ -123,9 +124,9 @@ colorscheme gruvbox
 
 " Airline
 "let g:airline_powerline_fonts = 1
+"let g:Powerline_symbols = 'unicode'
 let g:airline#extensions#keymap#enabled = 0
 let g:airline_section_z = "L/N:%l/%L Col:%c"
-"let g:Powerline_symbols = 'unicode'
 let g:airline#extensions#xkblayout#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 
@@ -136,8 +137,8 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " Rainbow parentheses
-au BufEnter * :RainbowParentheses
-let g:rainbow#max_level = 32
+autocmd BufEnter * :RainbowParentheses
+let g:rainbow#max_level = 64
 
 " NerdTree
 map <F3> :NERDTreeToggle<CR>
@@ -146,4 +147,3 @@ imap <F3> <C-O>:NERDTreeToggle<CR>
 " TagBar
 map <F4> :TagbarToggle<CR>
 imap <F4> <C-O>:TagbarToggle<CR>
-
