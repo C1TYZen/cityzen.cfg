@@ -133,7 +133,7 @@ colorscheme gruvbox
 "let g:airline_powerline_fonts = 1
 "let g:Powerline_symbols = 'unicode'
 let g:airline#extensions#keymap#enabled = 0
-let g:airline_section_z = "L/N:%l/%L Col:%c"
+let g:airline_section_z = "Str:%4l/%L Col:%2c"
 let g:airline#extensions#xkblayout#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 
