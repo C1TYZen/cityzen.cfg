@@ -46,9 +46,9 @@ set splitbelow
 
 syntax enable
 
-autocmd TerminalOpen * {
-	setlocal nonumber norelativenumber
-}
+if v:version >= 800
+	autocmd TerminalOpen * setlocal nonumber norelativenumber
+endif
 
 "======
 " KEYS
