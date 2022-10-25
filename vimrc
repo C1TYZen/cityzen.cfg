@@ -63,19 +63,21 @@ function! StatuslineGit()
 	return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
+" Section X
 set statusline=
-set statusline+=%#PmenuSel#
+set statusline+=%#MatchParen#
 set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m\
+set statusline+=%(\ %)
+" Section Y
+set statusline+=%#Folded#
+set statusline+=\ %(%f%m%)
 set statusline+=%=
-set statusline+=%#CursorColumn#
+" Section Z
+set statusline+=%#CursorLineNr#
 set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{&fileformat}\]
-set statusline+=\ %P
-set statusline+=\ %l:%c
+set statusline+=\ %(%P\ %4l:%2c\ %)
 
 "======
 " KEYS
