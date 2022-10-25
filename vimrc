@@ -145,5 +145,6 @@ map <F3> :NERDTreeToggle<CR>
 imap <F3> <C-O>:NERDTreeToggle<CR>
 
 " TagBar
+let NERDTreeShowHidden = 1
 map <F4> :TagbarToggle<CR>
 imap <F4> <C-O>:TagbarToggle<CR>
