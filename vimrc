@@ -43,6 +43,10 @@ set splitbelow
 
 syntax enable
 
+autocmd TerminalOpen * {
+	setlocal nonumber norelativenumber
+}
+
 "======
 " KEYS
 "======
