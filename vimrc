@@ -22,7 +22,10 @@ set number
 set relativenumber
 
 set list
-set listchars=tab:\ \ ,trail:·,lead:░,nbsp:~
+set listchars=tab:\ \ ,trail:·,nbsp:~
+if v:version >= 802
+	set listchars=tab:\ \ ,trail:·,lead:░,nbsp:~
+endif
 
 set tabstop=4
 set softtabstop=4
