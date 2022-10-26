@@ -50,9 +50,7 @@ if v:version >= 800
 	autocmd TerminalOpen * setlocal nonumber norelativenumber
 endif
 
-set laststatus=2
-
-" set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+" STATUSLINE
 
 function! GitBranch()
 	return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
@@ -64,20 +62,30 @@ function! StatuslineGit()
 endfunction
 
 " Section X
-set statusline=
-set statusline+=%#MatchParen#
-set statusline+=%{StatuslineGit()}
-set statusline+=%(\ %)
+set statusline=%#MatchParen#
+set statusline+=%(%{StatuslineGit()}\ %)
+set statusline+=%#CursorLineNr#
+set statusline+=%(\ %n\ %)
+set statusline+=%#MatchParen#%(\ %)
+" is paste set
+set statusline+=%#error#
+set statusline+=%{&paste?'[paste]':''}
+set statusline+=%*
+
 " Section Y
 set statusline+=%#Folded#
-set statusline+=\ %(%f%m%)
+" file status
+set statusline+=%(\ %y\ %f\ %w%h%r%m%)
 set statusline+=%=
+
 " Section Z
+set statusline+=%#MatchParen#%(\ %)
 set statusline+=%#CursorLineNr#
-set statusline+=\ %y
 set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
 set statusline+=\[%{&fileformat}\]
-set statusline+=\ %(%P\ %4l:%2c\ %)
+set statusline+=\ %(\ %4l:%2c\ %P\ %)
+set statusline+=%#MatchParen#%(\ %)
+set laststatus=2
 
 "======
 " KEYS
