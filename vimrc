@@ -50,43 +50,6 @@ if v:version >= 800
 	autocmd TerminalOpen * setlocal nonumber norelativenumber
 endif
 
-" STATUSLINE
-
-function! GitBranch()
-	return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! StatuslineGit()
-	let l:branchname = GitBranch()
-	return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-
-" Section X
-set statusline=%#MatchParen#
-set statusline+=%(%{StatuslineGit()}\ %)
-set statusline+=%#CursorLineNr#
-set statusline+=%(\ %n\ %)
-set statusline+=%#MatchParen#%(\ %)
-" is paste set
-set statusline+=%#error#
-set statusline+=%{&paste?'[paste]':''}
-set statusline+=%*
-
-" Section Y
-set statusline+=%#Folded#
-" file status
-set statusline+=%(\ %y\ %f\ %w%h%r%m%)
-set statusline+=%=
-
-" Section Z
-set statusline+=%#MatchParen#%(\ %)
-set statusline+=%#CursorLineNr#
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\[%{&fileformat}\]
-set statusline+=\ %(\ %4l:%2c\ %P\ %)
-set statusline+=%#MatchParen#%(\ %)
-set laststatus=2
-
 "======
 " KEYS
 "======
@@ -192,3 +155,85 @@ imap <F3> <C-O>:NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
 map <F4> :TagbarToggle<CR>
 imap <F4> <C-O>:TagbarToggle<CR>
+
+"============
+" STATUSLINE
+"============
+
+function! StatuslineGit()
+	let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+	return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+" status bar colors
+" 237 - gray
+" 119 - light green
+" 230 - white
+au InsertEnter * hi statusline ctermfg=119 ctermbg=234
+au InsertLeave * hi statusline ctermfg=237 ctermbg=230
+hi statusline ctermfg=237 ctermbg=230
+
+let g:currentmode={
+    \ 'n'      : 'Normal',
+    \ 'no'     : 'Normal·Operator Pending',
+    \ 'v'      : 'Visual',
+    \ 'V'      : 'V·Line',
+    \ "\<C-V>" : 'V·Block',
+    \ 's'      : 'Select',
+    \ 'S'      : 'S·Line',
+    \ "\<C-S>" : 'S·Block',
+    \ 'i'      : 'Insert',
+    \ 'R'      : 'Replace',
+    \ 'Rv'     : 'V·Replace',
+    \ 'c'      : 'Command',
+    \ 'cv'     : 'Vim Ex',
+    \ 'ce'     : 'Ex',
+    \ 'r'      : 'Prompt',
+    \ 'rm'     : 'More',
+    \ 'r?'     : 'Confirm',
+    \ '!'      : 'Shell',
+    \ 't'      : 'Terminal'
+    \}
+
+set laststatus=2
+set noshowmode
+set statusline=
+set statusline+=%0*%(\ %{toupper(g:currentmode[mode()])}\ %)
+set statusline+=%1*%(\ %<%y\ %f\ %m%r%h%w\ %)
+set statusline+=%=
+set statusline+=%0*%(\ %{''.(&fenc!=''?&fenc:&enc).''}[%{&ff}]%)
+set statusline+=%0*%(\ YX:%02l/%02v\ (%3P)\ %)
+
+" hi User1 ctermfg=007 ctermbg=239
+" hi User2 ctermfg=007 ctermbg=236
+" hi User3 ctermfg=236 ctermbg=236
+" hi User4 ctermfg=239 ctermbg=239
+
+" 
+" " Section X
+" set statusline=%#MatchParen#
+" set statusline+=%(%{StatuslineGit()}\ %)
+" set statusline+=%#CursorLineNr#
+" set statusline+=%(\ %n\ %)
+" set statusline+=%#MatchParen#%(\ %)
+" " is paste set
+" set statusline+=%#error#
+" set statusline+=%{&paste?'[paste]':''}
+" set statusline+=%*
+" 
+" " Section Y
+" set statusline+=%#Folded#
+" " file status
+" set statusline+=%(\ %y\ %f\ %w%h%r%m%)
+" set statusline+=%=
+" 
+" " Section Z
+" set statusline+=%#MatchParen#%(\ %)
+" set statusline+=%#CursorLineNr#
+" set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+" set statusline+=\[%{&fileformat}\]
+" set statusline+=\ %(\ %4l:%2c\ %P\ %)
+" set statusline+=%#MatchParen#%(\ %)
+" set statusline+=%*
+" set laststatus=2
+
