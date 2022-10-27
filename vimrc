@@ -166,12 +166,12 @@ function! StatuslineGit()
 endfunction
 
 " status bar colors
-" 237 - gray
-" 119 - light green
-" 230 - white
+" 231 - white
+" 241 - gray
+" 119 - Light green
 au InsertEnter * hi statusline ctermfg=119 ctermbg=234
-au InsertLeave * hi statusline ctermfg=237 ctermbg=252
-hi statusline ctermfg=237 ctermbg=252
+au InsertLeave * hi statusline ctermfg=241 ctermbg=231
+hi statusline ctermfg=241 ctermbg=231
 hi User1 ctermfg=245 ctermbg=235
 
 let g:currentmode={
@@ -203,38 +203,5 @@ set statusline+=%0*%(\ %{toupper(g:currentmode[mode()])}\ %)
 set statusline+=%1*%(\ %<%y\ %f\ %m%r%h%w\ %)
 set statusline+=%=
 set statusline+=%0*%(\ %{''.(&fenc!=''?&fenc:&enc).''}[%{&ff}]%)
-set statusline+=%0*%(\ YX:%02l/%02v\ (%3P)\ %)
-
-" hi User1 ctermfg=007 ctermbg=239
-" hi User2 ctermfg=007 ctermbg=236
-" hi User3 ctermfg=236 ctermbg=236
-" hi User4 ctermfg=239 ctermbg=239
-
-" 
-" " Section X
-" set statusline=%#MatchParen#
-" set statusline+=%(%{StatuslineGit()}\ %)
-" set statusline+=%#CursorLineNr#
-" set statusline+=%(\ %n\ %)
-" set statusline+=%#MatchParen#%(\ %)
-" " is paste set
-" set statusline+=%#error#
-" set statusline+=%{&paste?'[paste]':''}
-" set statusline+=%*
-" 
-" " Section Y
-" set statusline+=%#Folded#
-" " file status
-" set statusline+=%(\ %y\ %f\ %w%h%r%m%)
-" set statusline+=%=
-" 
-" " Section Z
-" set statusline+=%#MatchParen#%(\ %)
-" set statusline+=%#CursorLineNr#
-" set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-" set statusline+=\[%{&fileformat}\]
-" set statusline+=\ %(\ %4l:%2c\ %P\ %)
-" set statusline+=%#MatchParen#%(\ %)
-" set statusline+=%*
-" set laststatus=2
+set statusline+=%0*%(\ %04l/%02v\ (%3P/%L)\ %)
 
