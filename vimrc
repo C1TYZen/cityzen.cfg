@@ -170,8 +170,9 @@ endfunction
 " 119 - light green
 " 230 - white
 au InsertEnter * hi statusline ctermfg=119 ctermbg=234
-au InsertLeave * hi statusline ctermfg=237 ctermbg=230
-hi statusline ctermfg=237 ctermbg=230
+au InsertLeave * hi statusline ctermfg=237 ctermbg=252
+hi statusline ctermfg=237 ctermbg=252
+hi User1 ctermfg=245 ctermbg=235
 
 let g:currentmode={
     \ 'n'      : 'Normal',
