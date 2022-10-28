@@ -47,8 +47,11 @@ set splitbelow
 syntax enable
 
 if v:version >= 800
-	autocmd TerminalOpen * setlocal nonumber norelativenumber
+	au TerminalOpen * setlocal nonumber norelativenumber
 endif
+
+" jump to the last position in file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 "======
 " KEYS
@@ -142,7 +145,6 @@ imap <F4> <C-O>:TagbarToggle<CR>
 
 " status bar change colors
 " 119 - LightGreen
-" 199 - DeepPink1
 " 241 - Grey39
 " 231 - Grey100
 
@@ -151,22 +153,12 @@ function! StatuslineGit()
 	return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
-function! SetCursorLineNrColorVisual()
-    set updatetime=0
-	hi statusline ctermfg=199 ctermbg=234
-endfunction
+hi statusline ctermfg=254 ctermbg=234
 
 " INSERT
 au InsertEnter * hi statusline ctermfg=119 ctermbg=234
 au InsertLeave * hi statusline ctermfg=254 ctermbg=234
 
-" VISUAL
-vnoremap <silent> <expr> <SID>SetCursorLineNrColorVisual SetCursorLineNrColorVisual()
-nnoremap <silent> <script> v v<SID>SetCursorLineNrColorVisual
-nnoremap <silent> <script> V V<SID>SetCursorLineNrColorVisual
-nnoremap <silent> <script> <C-v> <C-v><SID>SetCursorLineNrColorVisual
-
-hi statusline ctermfg=254 ctermbg=234
 au CursorHold * hi statusline ctermfg=254 ctermbg=234
 hi User1 ctermfg=245 ctermbg=233
 
