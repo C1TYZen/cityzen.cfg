@@ -98,19 +98,16 @@ endif
 call plug#begin('~/.vim/bundle')
 
 "" Side panels
-Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 
 "" UI
 Plug 'morhetz/gruvbox'
-"Plug 'vim-airline/vim-airline'
 
 "" Languiges
 Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 
 "" Lisp edit
-"Plug 'kovisoft/paredit'
 Plug 'vlime/vlime', {'rtp': 'vim/'}
 
 "" Misc
@@ -129,14 +126,6 @@ call plug#end()
 set background=dark
 colorscheme gruvbox
 
-" Airline
-"let g:airline_powerline_fonts = 1
-"let g:Powerline_symbols = 'unicode'
-"let g:airline#extensions#keymap#enabled = 0
-"let g:airline_section_z = "YX:%4l/%2c %P/%L"
-"let g:airline#extensions#xkblayout#enabled = 0
-"let g:airline#extensions#whitespace#enabled = 0
-
 " Syntatic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -146,10 +135,6 @@ let g:syntastic_check_on_wq = 0
 " Rainbow parentheses
 autocmd BufEnter * :RainbowParentheses
 let g:rainbow#max_level = 64
-
-" NerdTree
-map <F3> :NERDTreeToggle<CR>
-imap <F3> <C-O>:NERDTreeToggle<CR>
 
 " TagBar
 let NERDTreeShowHidden = 1
