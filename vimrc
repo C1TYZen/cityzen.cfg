@@ -97,10 +97,7 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
-"" Side panels
-Plug 'majutsushi/tagbar'
-
-"" UI
+"" Colors
 Plug 'morhetz/gruvbox'
 
 "" Languiges
@@ -112,9 +109,7 @@ Plug 'vlime/vlime', {'rtp': 'vim/'}
 
 "" Misc
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'farmergreg/vim-lastplace'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -145,19 +140,37 @@ imap <F4> <C-O>:TagbarToggle<CR>
 " STATUSLINE
 "============
 
+" status bar change colors
+" 119 - LightGreen
+" 199 - DeepPink1
+" 241 - Grey39
+" 231 - Grey100
+
 function! StatuslineGit()
 	let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 	return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 
-" status bar colors
-" 231 - white
-" 241 - gray
-" 119 - Light green
+function! SetCursorLineNrColorVisual()
+    set updatetime=0
+	hi statusline ctermfg=199 ctermbg=234
+endfunction
+
+" INSERT
 au InsertEnter * hi statusline ctermfg=119 ctermbg=234
-au InsertLeave * hi statusline ctermfg=241 ctermbg=231
-hi statusline ctermfg=241 ctermbg=231
-hi User1 ctermfg=245 ctermbg=235
+au InsertLeave * hi statusline ctermfg=254 ctermbg=234
+
+" VISUAL
+vnoremap <silent> <expr> <SID>SetCursorLineNrColorVisual SetCursorLineNrColorVisual()
+nnoremap <silent> <script> v v<SID>SetCursorLineNrColorVisual
+nnoremap <silent> <script> V V<SID>SetCursorLineNrColorVisual
+nnoremap <silent> <script> <C-v> <C-v><SID>SetCursorLineNrColorVisual
+
+hi statusline ctermfg=254 ctermbg=234
+au CursorHold * hi statusline ctermfg=254 ctermbg=234
+hi User1 ctermfg=245 ctermbg=233
+
+" Config
 
 let g:currentmode={
     \ 'n'      : 'Normal',
