@@ -100,17 +100,14 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
-"" Colors
+" Colors
 Plug 'morhetz/gruvbox'
 
-"" Languiges
+" Languiges
 Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 
-"" Lisp edit
-Plug 'vlime/vlime', {'rtp': 'vim/'}
-
-"" Misc
+" Misc
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/rainbow_parentheses.vim'
 
@@ -124,20 +121,9 @@ call plug#end()
 set background=dark
 colorscheme gruvbox
 
-" Syntatic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 " Rainbow parentheses
 autocmd BufEnter * :RainbowParentheses
 let g:rainbow#max_level = 64
-
-" TagBar
-let NERDTreeShowHidden = 1
-map <F4> :TagbarToggle<CR>
-imap <F4> <C-O>:TagbarToggle<CR>
 
 "============
 " STATUSLINE
