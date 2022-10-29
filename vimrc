@@ -176,6 +176,7 @@ set laststatus=2
 set noshowmode
 set statusline=
 set statusline+=%0*%(\ %{toupper(g:currentmode[mode()])}\ %)
+set statusline+=%0*%(%{&paste?'PASTE':''}\ %)
 set statusline+=%1*%(\ %<%y\ %f\ %m%r%h%w\ %)
 set statusline+=%=
 set statusline+=%0*%(\ %{''.(&fenc!=''?&fenc:&enc).''}[%{&ff}]%)
