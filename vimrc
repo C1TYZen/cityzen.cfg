@@ -65,27 +65,55 @@ set pastetoggle=<F5>
 " 1. Allow to use CTRL-S and CTRL-Q as keybinds
 " 2. Restore default behaviour when leaving Vim.
 silent !stty -ixon
-autocmd VimLeave * silent !stty ixon
+au VimLeave * silent !stty ixon
 noremap  <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
+" Copy - CTRL-C
+vnoremap <C-C> "*y
 
 " Go to definition - F12
 map <F12> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
-
 " Go to definition in a vertical split - CTRL-F12
 map <C-F12> :vs <CR>:exec("tag ".expand("<cword>"))<CR>
-
-" Copy - CTRL-C
-vnoremap <C-C> "*y
 
 " Toggle line numbers - F8
 map <F8> :set number! <CR> :set relativenumber! <CR>
 
+" Buffers
 map bn :bn<CR>
 map bp :bp<CR>
 map bd :b#<CR> :bd#<CR>
 map bl :buffers<CR>
+
+" Send to REPL
+" *must start REPL int terminal first*
+function! GetVisualSelection()
+    let [line_start, column_start] = getpos("'<")[1:2]
+    let [line_end, column_end] = getpos("'>")[1:2]
+    let lines = getline(line_start, line_end)
+    if len(lines) == 0
+        return ''
+    endif
+	let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+    let lines[0] = lines[0][column_start - 1:]
+    return join(lines, "\n")
+endfunction
+
+function! ExecOnTerm()
+"	let term_buf filter(map(getbufinfo(), 'v:val.bufnr'), 'getbufvar(v:val, "&buftype") is# "terminal"')
+
+	let term_buf = uniq(map(filter(getwininfo(), 'v:val.terminal'), 'v:val.bufnr'))
+	if len(term_buf) == 0
+		echo "You need to start TERM and REPL, дебил"
+		return
+	endif
+	let code_slice = GetVisualSelection()
+	call term_sendkeys(term_buf[0], code_slice)
+	call term_sendkeys(term_buf[0], "\n")
+endfunction
+
+vnoremap <silent> <leader>ev :<C-U>call ExecOnTerm()<CR>
 
 "=========
 " PLUGINS
@@ -95,7 +123,7 @@ filetype plugin indent on
 if empty(glob('~/.vim/autoload/plug.vim'))
 	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
 	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	au VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/bundle')
@@ -110,6 +138,7 @@ Plug 'ervandew/supertab'
 " Misc
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'jiangmiao/auto-pairs'
 
 call plug#end()
 
@@ -122,33 +151,12 @@ set background=dark
 colorscheme gruvbox
 
 " Rainbow parentheses
-autocmd BufEnter * :RainbowParentheses
+au BufEnter * :RainbowParentheses
 let g:rainbow#max_level = 64
 
 "============
 " STATUSLINE
 "============
-
-" status bar change colors
-" 119 - LightGreen
-" 241 - Grey39
-" 231 - Grey100
-
-function! StatuslineGit()
-	let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-	return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-
-hi statusline ctermfg=254 ctermbg=234
-
-" INSERT
-au InsertEnter * hi statusline ctermfg=119 ctermbg=234
-au InsertLeave * hi statusline ctermfg=254 ctermbg=234
-
-au CursorHold * hi statusline ctermfg=254 ctermbg=234
-hi User1 ctermfg=245 ctermbg=233
-
-" Config
 
 let g:currentmode={
     \ 'n'      : 'Normal',
@@ -171,6 +179,23 @@ let g:currentmode={
     \ '!'      : 'Shell',
     \ 't'      : 'Terminal'
     \}
+
+" status bar change colors
+" 119 - LightGreen
+" 241 - Grey39
+" 231 - Grey100
+
+function! StatuslineGit()
+	let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+	return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+hi statusline ctermfg=254 ctermbg=234
+hi User1 ctermfg=245 ctermbg=233
+
+au InsertEnter * hi statusline ctermfg=119 ctermbg=234
+au InsertLeave * hi statusline ctermfg=254 ctermbg=234
+au CursorHold * hi statusline ctermfg=254 ctermbg=234
 
 set laststatus=2
 set noshowmode
