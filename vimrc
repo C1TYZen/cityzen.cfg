@@ -191,7 +191,7 @@ function! StatuslineGit()
 endfunction
 
 hi statusline ctermfg=254 ctermbg=234
-hi User1 ctermfg=245 ctermbg=233
+hi User1 ctermfg=245 ctermbg=237
 
 au InsertEnter * hi statusline ctermfg=119 ctermbg=234
 au InsertLeave * hi statusline ctermfg=254 ctermbg=234
