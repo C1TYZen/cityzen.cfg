@@ -28,11 +28,13 @@ if v:version >= 802
 endif
 
 set tabstop=4
-set softtabstop=4
+" set softtabstop=4
 set shiftwidth=4
-set noexpandtab
+au BufRead,BufNewFile * set noexpandtab
+au BufRead,BufNewFile *.rkt set expandtab
 set autoindent
 set smartindent
+" set smarttab
 
 set wildmenu
 set showcmd
@@ -50,18 +52,18 @@ if v:version >= 800
 	au TerminalOpen * setlocal nonumber norelativenumber
 endif
 
-" jump to the last position in file
+" Jump to the last position in file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 "======
 " KEYS
 "======
 
-" Retab file - F1
+" Retab file
 map <F1> :%retab! <CR>
 set pastetoggle=<F5>
 
-" Save - CTRL-S
+" Save
 " 1. Allow to use CTRL-S and CTRL-Q as keybinds
 " 2. Restore default behaviour when leaving Vim.
 silent !stty -ixon
@@ -69,16 +71,13 @@ au VimLeave * silent !stty ixon
 noremap  <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
-" Copy - CTRL-C
+" Copy
 vnoremap <C-C> "*y
 
-" Go to definition - F12
-map <F12> :sp <CR>:exec("tag ".expand("<cword>"))<CR>
-" Go to definition in a vertical split - CTRL-F12
-map <C-F12> :vs <CR>:exec("tag ".expand("<cword>"))<CR>
-
-" Toggle line numbers - F8
+" Toggle line numbers
 map <F8> :set number! <CR> :set relativenumber! <CR>
+
+map <F3> :TagbarToggle<CR>
 
 " Buffers
 map bn :bn<CR>
@@ -89,15 +88,15 @@ map bl :buffers<CR>
 " Send to REPL
 " *must start REPL int terminal first*
 function! GetVisualSelection()
-    let [line_start, column_start] = getpos("'<")[1:2]
-    let [line_end, column_end] = getpos("'>")[1:2]
-    let lines = getline(line_start, line_end)
-    if len(lines) == 0
-        return ''
-    endif
+	let [line_start, column_start] = getpos("'<")[1:2]
+	let [line_end, column_end] = getpos("'>")[1:2]
+	let lines = getline(line_start, line_end)
+	if len(lines) == 0
+		return ''
+	endif
 	let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
-    let lines[0] = lines[0][column_start - 1:]
-    return join(lines, "\n")
+	let lines[0] = lines[0][column_start - 1:]
+	return join(lines, "\n")
 endfunction
 
 function! ExecOnTerm()
@@ -139,6 +138,7 @@ Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'preservim/tagbar'
 
 call plug#end()
 
@@ -159,26 +159,26 @@ let g:rainbow#max_level = 64
 "============
 
 let g:currentmode={
-    \ 'n'      : 'Normal',
-    \ 'no'     : 'Normal·Operator Pending',
-    \ 'v'      : 'Visual',
-    \ 'V'      : 'V·Line',
-    \ "\<C-V>" : 'V·Block',
-    \ 's'      : 'Select',
-    \ 'S'      : 'S·Line',
-    \ "\<C-S>" : 'S·Block',
-    \ 'i'      : 'Insert',
-    \ 'R'      : 'Replace',
-    \ 'Rv'     : 'V·Replace',
-    \ 'c'      : 'Command',
-    \ 'cv'     : 'Vim Ex',
-    \ 'ce'     : 'Ex',
-    \ 'r'      : 'Prompt',
-    \ 'rm'     : 'More',
-    \ 'r?'     : 'Confirm',
-    \ '!'      : 'Shell',
-    \ 't'      : 'Terminal'
-    \}
+	\ 'n'	   : 'Normal',
+	\ 'no'	   : 'Normal·Operator Pending',
+	\ 'v'	   : 'Visual',
+	\ 'V'	   : 'V·Line',
+	\ "\<C-V>" : 'V·Block',
+	\ 's'	   : 'Select',
+	\ 'S'	   : 'S·Line',
+	\ "\<C-S>" : 'S·Block',
+	\ 'i'	   : 'Insert',
+	\ 'R'	   : 'Replace',
+	\ 'Rv'	   : 'V·Replace',
+	\ 'c'	   : 'Command',
+	\ 'cv'	   : 'Vim Ex',
+	\ 'ce'	   : 'Ex',
+	\ 'r'	   : 'Prompt',
+	\ 'rm'	   : 'More',
+	\ 'r?'	   : 'Confirm',
+	\ '!'	   : 'Shell',
+	\ 't'	   : 'Terminal'
+	\}
 
 " status bar change colors
 " 119 - LightGreen
