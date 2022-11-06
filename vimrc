@@ -17,6 +17,7 @@ set nocompatible
 set encoding=utf-8
 set exrc
 set secure
+set incsearch
 
 set number
 set relativenumber
