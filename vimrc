@@ -17,10 +17,22 @@ set nocompatible
 set encoding=utf-8
 set exrc
 set secure
+
+set hlsearch
 set incsearch
+set ignorecase
 
 set number
 set relativenumber
+
+set wildmenu
+set showcmd
+
+set colorcolumn=80
+set cursorline
+
+set splitright
+set splitbelow
 
 set list
 set listchars=tab:\ \ ,trail:·,nbsp:~
@@ -29,25 +41,11 @@ if v:version >= 802
 endif
 
 set tabstop=4
-" set softtabstop=4
 set shiftwidth=4
 au BufRead,BufNewFile * set noexpandtab
 au BufRead,BufNewFile *.rkt,*.scm,*.cl set expandtab
 set autoindent
 set smartindent
-" set smarttab
-
-set wildmenu
-set showcmd
-
-set colorcolumn=80
-set cursorline
-set hlsearch
-
-set splitright
-set splitbelow
-
-syntax enable
 
 if v:version >= 800
 	au TerminalOpen * setlocal nonumber norelativenumber
@@ -55,6 +53,8 @@ endif
 
 " Jump to the last position in file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+syntax enable
 
 "======
 " KEYS
