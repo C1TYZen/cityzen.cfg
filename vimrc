@@ -83,7 +83,7 @@ map <F3> :TagbarToggle<CR>
 " Buffers
 map bn :bn<CR>
 map bp :bp<CR>
-map bd :b#<CR> :bd#<CR>
+map bd :bp<CR> :bd#<CR>
 map bl :buffers<CR>
 
 " Send to REPL
