@@ -26,14 +26,17 @@ fi
 #ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
 
-export LS_OPTS='--color=auto --group-directories-first'
-
 alias less='less --RAW-CONTROL-CHARS'
+alias grep='grep --color'
+
+LS_OPTS='--color=auto --group-directories-first'
 alias ls='ls ${LS_OPTS}'
 alias la='ls -la ${LS_OPTS}'
 alias ll='ls -l ${LS_OPTS}'
-alias grep='grep --color'
 
+alias git-log='git log --graph \
+        --pretty="%Cred%h%Creset -%C(auto)%d %Cgreen(%ad) %C(bold blue)<%an>%n%Creset%B%N" \
+        --date=short'
 
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
