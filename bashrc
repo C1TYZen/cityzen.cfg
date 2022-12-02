@@ -23,9 +23,6 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
-#ignore upper and lowercase when TAB completion
-bind "set completion-ignore-case on"
-
 alias less='less --RAW-CONTROL-CHARS'
 alias grep='grep --color'
 
