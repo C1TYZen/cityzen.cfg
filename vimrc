@@ -57,6 +57,35 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 syntax enable
 
+"===========
+" FUNCTIONS
+"===========
+
+function! GetVisualSelection()
+	let [line_start, column_start] = getpos("'<")[1:2]
+	let [line_end, column_end] = getpos("'>")[1:2]
+	let lines = getline(line_start, line_end)
+	if len(lines) == 0
+		return ''
+	endif
+	let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
+	let lines[0] = lines[0][column_start - 1:]
+	return join(lines, "\n")
+endfunction
+
+function! ExecOnTerm()
+"	let term_buf filter(map(getbufinfo(), 'v:val.bufnr'), 'getbufvar(v:val, "&buftype") is# "terminal"')
+
+	let term_buf = uniq(map(filter(getwininfo(), 'v:val.terminal'), 'v:val.bufnr'))
+	if len(term_buf) == 0
+		echo "You need to start TERM and REPL, дебил"
+		return
+	endif
+	let code_slice = GetVisualSelection()
+	call term_sendkeys(term_buf[0], code_slice)
+	call term_sendkeys(term_buf[0], "\n")
+endfunction
+
 "======
 " KEYS
 "======
@@ -87,33 +116,7 @@ map bp :bp<CR>
 map bd :bp<CR> :bd#<CR>
 map bl :buffers<CR>
 
-" Send to REPL
-" *must start REPL int terminal first*
-function! GetVisualSelection()
-	let [line_start, column_start] = getpos("'<")[1:2]
-	let [line_end, column_end] = getpos("'>")[1:2]
-	let lines = getline(line_start, line_end)
-	if len(lines) == 0
-		return ''
-	endif
-	let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
-	let lines[0] = lines[0][column_start - 1:]
-	return join(lines, "\n")
-endfunction
-
-function! ExecOnTerm()
-"	let term_buf filter(map(getbufinfo(), 'v:val.bufnr'), 'getbufvar(v:val, "&buftype") is# "terminal"')
-
-	let term_buf = uniq(map(filter(getwininfo(), 'v:val.terminal'), 'v:val.bufnr'))
-	if len(term_buf) == 0
-		echo "You need to start TERM and REPL, дебил"
-		return
-	endif
-	let code_slice = GetVisualSelection()
-	call term_sendkeys(term_buf[0], code_slice)
-	call term_sendkeys(term_buf[0], "\n")
-endfunction
-
+" !!! For lisp expressions, first you need to start REPL in terminal !!!
 vnoremap <silent> <leader>ev :<C-U>call ExecOnTerm()<CR>
 
 "=========
