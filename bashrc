@@ -43,6 +43,9 @@ alias git-log='git log --graph \
 		--pretty="%Cred%h%Creset -%C(auto)%d %Cgreen(%ad) %C(bold blue)<%an>%n%Creset%B%N" \
 		--date=short'
 
+# cycle througs completitions
+bind TAB:menu-complete
+
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
 ex ()
