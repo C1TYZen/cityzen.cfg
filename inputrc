@@ -1,0 +1,7 @@
+$include /etc/inputrc
+set completion-ignore-case on
+set show-all-if-ambiguous on
+set menu-complete-display-prefix on
+TAB: menu-complete
+set colored-completion-prefix on
+set colored-stats on
