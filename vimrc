@@ -119,6 +119,10 @@ map bl :buffers<CR>
 " !!! For lisp expressions, first you need to start REPL in terminal !!!
 vnoremap <silent> <leader>ev :<C-U>call ExecOnTerm()<CR>
 
+" opens search results in a window and highlight the matches
+command! -nargs=+ Grep execute 'vimgrep /<args>/j *' | copen | execute 'silent /<args>'
+nmap <leader>g :Grep <C-R>=expand("<cword>")<CR><CR>
+
 "=========
 " PLUGINS
 "=========
