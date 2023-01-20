@@ -120,7 +120,7 @@ map bl :buffers<CR>
 vnoremap <silent> <leader>ev :<C-U>call ExecOnTerm()<CR>
 
 " opens search results in a window and highlight the matches
-command! -nargs=+ Grep execute 'vimgrep /<args>/j *' | copen | execute 'silent /<args>'
+command! -nargs=+ Grep execute 'grep! -I -r -n --exclude *.{json,pyc} . -e <args>' | copen | execute '/<args>'
 nmap <leader>g :Grep <C-R>=expand("<cword>")<CR><CR>
 
 "=========
