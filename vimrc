@@ -36,7 +36,7 @@ set splitright
 set splitbelow
 
 set list
-set listchars=tab:\ \ ,trail:·,nbsp:~
+set listchars=tab:>-,trail:·,nbsp:~
 if v:version >= 802
 	set listchars+=lead:░
 endif
@@ -142,7 +142,7 @@ Plug 'ervandew/supertab'
 " Misc
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
 Plug 'preservim/tagbar'
 
 call plug#end()
