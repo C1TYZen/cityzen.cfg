@@ -36,7 +36,7 @@ set splitright
 set splitbelow
 
 set list
-set listchars=tab:>-,trail:·,nbsp:~
+set listchars=tab:\|\ ,trail:·,nbsp:~
 if v:version >= 802
 	set listchars+=lead:░
 endif
@@ -75,7 +75,6 @@ endfunction
 
 function! ExecOnTerm()
 "	let term_buf filter(map(getbufinfo(), 'v:val.bufnr'), 'getbufvar(v:val, "&buftype") is# "terminal"')
-
 	let term_buf = uniq(map(filter(getwininfo(), 'v:val.terminal'), 'v:val.bufnr'))
 	if len(term_buf) == 0
 		echo "You need to start TERM and REPL, дебил"
@@ -168,25 +167,25 @@ let g:rainbow#max_level = 64
 "============
 
 let g:currentmode={
-	\ 'n'	   : 'Normal',
-	\ 'no'	   : 'Normal·Operator Pending',
-	\ 'v'	   : 'Visual',
-	\ 'V'	   : 'V·Line',
+	\ 'n'      : 'Normal',
+	\ 'no'     : 'Normal·Operator Pending',
+	\ 'v'      : 'Visual',
+	\ 'V'      : 'V·Line',
 	\ "\<C-V>" : 'V·Block',
-	\ 's'	   : 'Select',
-	\ 'S'	   : 'S·Line',
+	\ 's'      : 'Select',
+	\ 'S'      : 'S·Line',
 	\ "\<C-S>" : 'S·Block',
-	\ 'i'	   : 'Insert',
-	\ 'R'	   : 'Replace',
-	\ 'Rv'	   : 'V·Replace',
-	\ 'c'	   : 'Command',
-	\ 'cv'	   : 'Vim Ex',
-	\ 'ce'	   : 'Ex',
-	\ 'r'	   : 'Prompt',
-	\ 'rm'	   : 'More',
-	\ 'r?'	   : 'Confirm',
-	\ '!'	   : 'Shell',
-	\ 't'	   : 'Terminal'
+	\ 'i'      : 'Insert',
+	\ 'R'      : 'Replace',
+	\ 'Rv'     : 'V·Replace',
+	\ 'c'      : 'Command',
+	\ 'cv'     : 'Vim Ex',
+	\ 'ce'     : 'Ex',
+	\ 'r'      : 'Prompt',
+	\ 'rm'     : 'More',
+	\ 'r?'     : 'Confirm',
+	\ '!'      : 'Shell',
+	\ 't'      : 'Terminal'
 	\}
 
 " status bar change colors
