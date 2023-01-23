@@ -3,14 +3,6 @@ if [ -r /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# Script to ignore case in bash
-# If ~/.inputrc doesn't exist yet: First include the original /etc/inputrc
-if [ ! -a ~/.inputrc ]; then
-	echo '$include /etc/inputrc' > ~/.inputrc;
-	# Add shell-option to ~/.inputrc to enable case-insensitive tab completion
-	echo 'set completion-ignore-case On' >> ~/.inputrc
-fi
-
 PS1=""
 PS1+="\e[01;95m\u\e[m@\e[01;32m\h "
 PS1+="\e[01;34m"
@@ -19,9 +11,6 @@ PS1+="[\t] "
 PS1+="[\w]\e"
 PS1+="[m\n"
 PS1+="$ "
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
 
 if [ -d "$HOME/.bin" ] ;
 	then PATH="$HOME/.bin:$PATH"
@@ -42,9 +31,6 @@ alias ll='ls -l ${LS_OPTS}'
 alias git-log='git log --graph \
 		--pretty="%Cred%h%Creset -%C(auto)%d %Cgreen(%ad) %C(bold blue)<%an>%n%Creset%B%N" \
 		--date=short'
-
-# cycle througs completitions
-bind TAB:menu-complete
 
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
