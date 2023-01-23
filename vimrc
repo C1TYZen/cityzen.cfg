@@ -36,9 +36,9 @@ set splitright
 set splitbelow
 
 set list
-set listchars=tab:\|\ ,trail:·,nbsp:~
+set listchars=tab:\|\ ,trail:·,nbsp:~,eol:¬
 if v:version >= 802
-	set listchars+=lead:░,eol:¬
+	set listchars+=lead:░
 endif
 
 set tabstop=4
