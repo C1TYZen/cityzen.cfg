@@ -119,7 +119,8 @@ map bl :buffers<CR>
 vnoremap <silent> <leader>ev :<C-U>call ExecOnTerm()<CR>
 
 " opens search results in a window and highlight the matches
-command! -nargs=+ Grep execute 'grep! -Iirn <args> .' | copen | execute '/<args>'
+" example 'Grep --include \*.c printf .'
+command! -nargs=+ Grep execute 'grep! -Iirn <args> .' | copen
 nmap <leader>g :Grep <C-R>=expand("<cword>")<CR><CR>
 
 "=========
