@@ -138,16 +138,10 @@ call plug#begin('~/.vim/bundle')
 
 " Colors
 Plug 'morhetz/gruvbox'
-
-" Languiges
 Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
-
-" Misc
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/rainbow_parentheses.vim'
-"Plug 'jiangmiao/auto-pairs'
-Plug 'preservim/tagbar'
 
 call plug#end()
 
