@@ -136,7 +136,6 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
-" Colors
 Plug 'morhetz/gruvbox'
 Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
