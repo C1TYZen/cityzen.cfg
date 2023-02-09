@@ -54,30 +54,6 @@ syntax enable
 " FUNCTIONS
 "===========
 
-function! GetVisualSelection()
-	let [line_start, column_start] = getpos("'<")[1:2]
-	let [line_end, column_end] = getpos("'>")[1:2]
-	let lines = getline(line_start, line_end)
-	if len(lines) == 0
-		return ''
-	endif
-	let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
-	let lines[0] = lines[0][column_start - 1:]
-	return join(lines, "\n")
-endfunction
-
-function! ExecOnTerm()
-"	let term_buf filter(map(getbufinfo(), 'v:val.bufnr'), 'getbufvar(v:val, "&buftype") is# "terminal"')
-	let term_buf = uniq(map(filter(getwininfo(), 'v:val.terminal'), 'v:val.bufnr'))
-	if len(term_buf) == 0
-		echo "You need to start TERM and REPL, дебил"
-		return
-	endif
-	let code_slice = GetVisualSelection()
-	call term_sendkeys(term_buf[0], code_slice)
-	call term_sendkeys(term_buf[0], "\n")
-endfunction
-
 "======
 " KEYS
 "======
@@ -130,12 +106,13 @@ endif
 call plug#begin('~/.vim/bundle')
 
 Plug 'morhetz/gruvbox'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -157,5 +134,5 @@ let g:rainbow#max_level = 64
 
 lua << EOF
 	require 'plugins/lualine'
+	require 'plugins/coc'
 EOF
-
