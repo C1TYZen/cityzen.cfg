@@ -36,10 +36,7 @@ set splitright
 set splitbelow
 
 set list
-set listchars=tab:\|\ ,trail:·,nbsp:~,eol:¬
-if v:version >= 802
-	set listchars+=lead:░
-endif
+set listchars=tab:\|\ ,trail:·,nbsp:~,eol:¬,lead:░
 
 set tabstop=4
 set shiftwidth=4
@@ -47,10 +44,6 @@ au BufRead,BufNewFile * set noexpandtab
 au BufRead,BufNewFile *.rkt,*.scm,*.cl,*.py set expandtab
 set autoindent
 set smartindent
-
-if v:version >= 800
-	au TerminalOpen * setlocal nonumber norelativenumber
-endif
 
 " Jump to the last position in file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -141,6 +134,8 @@ Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
 
@@ -156,56 +151,11 @@ colorscheme gruvbox
 au BufEnter * :RainbowParentheses
 let g:rainbow#max_level = 64
 
-"============
-" STATUSLINE
-"============
+"=====
+" LUA
+"=====
 
-let g:currentmode={
-	\ 'n'      : 'Normal',
-	\ 'no'     : 'Normal·Operator Pending',
-	\ 'v'      : 'Visual',
-	\ 'V'      : 'V·Line',
-	\ "\<C-V>" : 'V·Block',
-	\ 's'      : 'Select',
-	\ 'S'      : 'S·Line',
-	\ "\<C-S>" : 'S·Block',
-	\ 'i'      : 'Insert',
-	\ 'R'      : 'Replace',
-	\ 'Rv'     : 'V·Replace',
-	\ 'c'      : 'Command',
-	\ 'cv'     : 'Vim Ex',
-	\ 'ce'     : 'Ex',
-	\ 'r'      : 'Prompt',
-	\ 'rm'     : 'More',
-	\ 'r?'     : 'Confirm',
-	\ '!'      : 'Shell',
-	\ 't'      : 'Terminal'
-	\}
-
-" status bar change colors
-" 119 - LightGreen
-" 241 - Grey39
-" 231 - Grey100
-
-function! StatuslineGit()
-	let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-	return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-
-hi statusline ctermfg=254 ctermbg=234
-hi User1 ctermfg=245 ctermbg=237
-
-au InsertEnter * hi statusline ctermfg=119 ctermbg=234
-au InsertLeave * hi statusline ctermfg=254 ctermbg=234
-au CursorHold * hi statusline ctermfg=254 ctermbg=234
-
-set laststatus=2
-set noshowmode
-set statusline=
-set statusline+=%0*%(\ %{toupper(g:currentmode[mode()])}\ %)
-set statusline+=%0*%(%{&paste?'PASTE':''}\ %)
-set statusline+=%1*%(\ %<%y\ %f\ %m%r%h%w\ %)
-set statusline+=%=
-set statusline+=%0*%(\ %{''.(&fenc!=''?&fenc:&enc).''}[%{&ff}]%)
-set statusline+=%0*%(\ %04l/%02v\ (%3P/%L)\ %)
+lua << EOF
+	require 'plugins/lualine'
+EOF
 
