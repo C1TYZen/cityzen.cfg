@@ -89,7 +89,7 @@ vnoremap <silent> <leader>ev :<C-U>call ExecOnTerm()<CR>
 
 " opens search results in a window and highlight the matches
 " example 'Grep --include \*.c printf .'
-command! -nargs=+ Grep execute 'grep! -Iirn <args> .' | copen
+command! -nargs=+ Grep execute 'silent grep! --exclude-dir=.git --exclude={tags,ctags} --exclude=.* -Iirn <args> .' | copen
 nmap <leader>g :Grep <C-R>=expand("<cword>")<CR><CR>
 
 "=========
