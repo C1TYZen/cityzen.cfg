@@ -92,6 +92,21 @@ vnoremap <silent> <leader>ev :<C-U>call ExecOnTerm()<CR>
 command! -nargs=+ Grep execute 'silent grep! --exclude-dir=.git --exclude={tags,ctags} --exclude=.* -Iirn <args> .' | copen
 nmap <leader>g :Grep <C-R>=expand("<cword>")<CR><CR>
 
+" Disable mouse
+map <ScrollWheelUp> <nop>
+map <S-ScrollWheelUp> <nop>
+map <C-ScrollWheelUp> <nop>
+map <ScrollWheelDown> <nop>
+map <S-ScrollWheelDown> <nop>
+map <C-ScrollWheelDown> <nop>
+map <ScrollWheelLeft> <nop>
+map <S-ScrollWheelLeft> <nop>
+map <C-ScrollWheelLeft> <nop>
+map <ScrollWheelRight> <nop>
+map <S-ScrollWheelRight> <nop>
+map <C-ScrollWheelRight> <nop>
+set mouse=
+
 "=========
 " PLUGINS
 "=========
