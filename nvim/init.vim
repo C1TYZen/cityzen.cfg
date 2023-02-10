@@ -118,7 +118,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 	au VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/bundle')
+call plug#begin()
 
 Plug 'morhetz/gruvbox'
 " Plug 'w0rp/ale'
