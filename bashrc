@@ -3,6 +3,9 @@ if [ -r /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# For reomote host, when use kitty with remote tmux
+TERM="xterm-256color"
+
 PS1=""
 PS1+="\e[01;95m\u\e[m@\e[01;32m\h "
 PS1+="\e[01;34m"
