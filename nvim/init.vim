@@ -107,6 +107,9 @@ map <S-ScrollWheelRight> <nop>
 map <C-ScrollWheelRight> <nop>
 set mouse=
 
+nnoremap <leader>fn :NERDTreeFocus<CR>
+nnoremap <leader>n :NERDTreeToggle<CR>
+
 "=========
 " PLUGINS
 "=========
@@ -120,14 +123,22 @@ endif
 
 call plug#begin()
 
-Plug 'morhetz/gruvbox'
-" Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/rainbow_parentheses.vim'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/nerdtree'
+Plug 'vimwiki/vimwiki'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+
+" Design
+Plug 'morhetz/gruvbox'
 Plug 'nvim-lualine/lualine.nvim'
+
+" Icons
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -143,11 +154,14 @@ colorscheme gruvbox
 au BufEnter * :RainbowParentheses
 let g:rainbow#max_level = 64
 
+" NERDTree
+let NERDTreeShowHidden = 1
+
 "=====
 " LUA
 "=====
 
 lua << EOF
 	require 'plugins/lualine'
-	require 'plugins/coc'
+	-- require 'plugins/coc'
 EOF
