@@ -130,15 +130,15 @@ Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'preservim/nerdtree'
 Plug 'vimwiki/vimwiki'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+" Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 
 " Design
 Plug 'morhetz/gruvbox'
 Plug 'nvim-lualine/lualine.nvim'
 
 " Icons
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'ryanoasis/vim-devicons'
+" Plug 'kyazdani42/nvim-web-devicons'
+" Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
