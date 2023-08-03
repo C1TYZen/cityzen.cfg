@@ -56,6 +56,7 @@ endif
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 syntax enable
+colorscheme retrobox
 
 "===========
 " FUNCTIONS
@@ -101,13 +102,6 @@ au VimLeave * silent !stty ixon
 noremap  <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
-" Copy
-vnoremap <C-C> "*y
-
-" Toggle line numbers
-map <F8> :set number! <CR> :set relativenumber! <CR>
-
-map <F3> :TagbarToggle<CR>
 
 " Buffers
 map bn :bn<CR>
@@ -136,12 +130,9 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
-Plug 'morhetz/gruvbox'
-" Plug 'w0rp/ale'
 Plug 'ervandew/supertab'
-Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'fxn/vim-monochrome'
+Plug 'morhetz/gruvbox'
 Plug 'Lokaltog/vim-monotone'
 
 call plug#end()
@@ -153,7 +144,6 @@ call plug#end()
 " Gruvbox
 set background=dark
 " colorscheme gruvbox
-" colorscheme monochrome
 colorscheme monotone
 
 " Rainbow parentheses
@@ -190,11 +180,6 @@ let g:currentmode={
 " 119 - LightGreen
 " 241 - Grey39
 " 231 - Grey100
-
-function! StatuslineGit()
-	let l:branchname = system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-	return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
 
 hi statusline ctermfg=254 ctermbg=234
 hi User1 ctermfg=245 ctermbg=237
