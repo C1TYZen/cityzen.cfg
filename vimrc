@@ -141,9 +141,8 @@ Plug 'morhetz/gruvbox'
 Plug 'ervandew/supertab'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'junegunn/rainbow_parentheses.vim'
-Plug 'lucasprag/simpleblack'
-Plug 'josegamez82/starrynight'
-Plug 'habamax/vim-habanight'
+Plug 'fxn/vim-monochrome'
+Plug 'Lokaltog/vim-monotone'
 
 call plug#end()
 
@@ -154,9 +153,8 @@ call plug#end()
 " Gruvbox
 set background=dark
 " colorscheme gruvbox
-" colorscheme simpleblack
-" colorscheme starrynight
-colorscheme habanight
+" colorscheme monochrome
+colorscheme monotone
 
 " Rainbow parentheses
 au BufEnter * :RainbowParentheses
