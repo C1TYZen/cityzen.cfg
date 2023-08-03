@@ -36,7 +36,7 @@ set splitright
 set splitbelow
 
 set list
-set listchars=tab:\|\ ,trail:·,nbsp:~,eol:¬
+set listchars=tab:\ \ ,trail:·,nbsp:~
 if v:version >= 802
 	set listchars+=lead:░
 endif
