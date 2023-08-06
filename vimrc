@@ -133,7 +133,6 @@ call plug#begin('~/.vim/bundle')
 Plug 'ervandew/supertab'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'morhetz/gruvbox'
-Plug 'Lokaltog/vim-monotone'
 
 call plug#end()
 
@@ -143,8 +142,7 @@ call plug#end()
 
 " Gruvbox
 set background=dark
-" colorscheme gruvbox
-colorscheme monotone
+colorscheme gruvbox
 
 " Rainbow parentheses
 au BufEnter * :RainbowParentheses
