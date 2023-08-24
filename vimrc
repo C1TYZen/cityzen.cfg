@@ -95,6 +95,7 @@ call plug#begin('~/.vim/bundle')
 Plug 'ervandew/supertab'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'morhetz/gruvbox'
+Plug 'preservim/nerdtree'
 
 call plug#end()
 
@@ -110,15 +111,21 @@ colorscheme gruvbox
 au BufEnter * :RainbowParentheses
 let g:rainbow#max_level = 64
 
+" NERDTree
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
 "============
 " STATUSLINE
 "============
 
 set laststatus=2
 set statusline=
-set statusline+=%0*%(\ %{&paste?'PASTE':''}\ %)
+set statusline+=%0*%(\ %{&paste?'*PASTE*':''}%)
 set statusline+=%0*%(\ %<[%Y]\ %t\ %m%r%h%w\ %)
 set statusline+=%1*%=
 set statusline+=%0*%(\ %{''.(&fenc!=''?&fenc:&enc).''}[%{&ff}]%)
-set statusline+=%0*%(\ %04l/%02v\ (%3P/%L)\ %)
+set statusline+=%0*%(\ [%l:%v]\ (%P/%L)\ %)
 
