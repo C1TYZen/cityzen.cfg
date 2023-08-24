@@ -36,55 +36,23 @@ set splitright
 set splitbelow
 
 set list
-set listchars=tab:\ \ ,trail:·,nbsp:~
+set listchars=
+set listchars=tab:\|\ ,trail:·,nbsp:~
 if v:version >= 802
 	set listchars+=lead:░
 endif
 
 set tabstop=4
 set shiftwidth=4
-au BufRead,BufNewFile * set noexpandtab
-au BufRead,BufNewFile *.rkt,*.scm,*.cl,*.py set expandtab
+set noexpandtab
 set autoindent
 set smartindent
-
-if v:version >= 800
-	au TerminalOpen * setlocal nonumber norelativenumber
-endif
+set smarttab
 
 " Jump to the last position in file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 syntax enable
-colorscheme retrobox
-
-"===========
-" FUNCTIONS
-"===========
-
-function! GetVisualSelection()
-	let [line_start, column_start] = getpos("'<")[1:2]
-	let [line_end, column_end] = getpos("'>")[1:2]
-	let lines = getline(line_start, line_end)
-	if len(lines) == 0
-		return ''
-	endif
-	let lines[-1] = lines[-1][: column_end - (&selection == 'inclusive' ? 1 : 2)]
-	let lines[0] = lines[0][column_start - 1:]
-	return join(lines, "\n")
-endfunction
-
-function! ExecOnTerm()
-"	let term_buf filter(map(getbufinfo(), 'v:val.bufnr'), 'getbufvar(v:val, "&buftype") is# "terminal"')
-	let term_buf = uniq(map(filter(getwininfo(), 'v:val.terminal'), 'v:val.bufnr'))
-	if len(term_buf) == 0
-		echo "You need to start TERM and REPL, дебил"
-		return
-	endif
-	let code_slice = GetVisualSelection()
-	call term_sendkeys(term_buf[0], code_slice)
-	call term_sendkeys(term_buf[0], "\n")
-endfunction
 
 "======
 " KEYS
