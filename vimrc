@@ -146,47 +146,11 @@ let g:rainbow#max_level = 64
 " STATUSLINE
 "============
 
-let g:currentmode={
-	\ 'n'      : 'Normal',
-	\ 'no'     : 'Normal·Operator Pending',
-	\ 'v'      : 'Visual',
-	\ 'V'      : 'V·Line',
-	\ "\<C-V>" : 'V·Block',
-	\ 's'      : 'Select',
-	\ 'S'      : 'S·Line',
-	\ "\<C-S>" : 'S·Block',
-	\ 'i'      : 'Insert',
-	\ 'R'      : 'Replace',
-	\ 'Rv'     : 'V·Replace',
-	\ 'c'      : 'Command',
-	\ 'cv'     : 'Vim Ex',
-	\ 'ce'     : 'Ex',
-	\ 'r'      : 'Prompt',
-	\ 'rm'     : 'More',
-	\ 'r?'     : 'Confirm',
-	\ '!'      : 'Shell',
-	\ 't'      : 'Terminal'
-	\}
-
-" status bar change colors
-" 119 - LightGreen
-" 241 - Grey39
-" 231 - Grey100
-
-hi statusline ctermfg=254 ctermbg=234
-hi User1 ctermfg=245 ctermbg=237
-
-au InsertEnter * hi statusline ctermfg=119 ctermbg=234
-au InsertLeave * hi statusline ctermfg=254 ctermbg=234
-au CursorHold * hi statusline ctermfg=254 ctermbg=234
-
 set laststatus=2
-set noshowmode
 set statusline=
-set statusline+=%0*%(\ %{toupper(g:currentmode[mode()])}\ %)
-set statusline+=%0*%(%{&paste?'PASTE':''}\ %)
-set statusline+=%1*%(\ %<%y\ %f\ %m%r%h%w\ %)
-set statusline+=%=
+set statusline+=%0*%(\ %{&paste?'PASTE':''}\ %)
+set statusline+=%0*%(\ %<[%Y]\ %t\ %m%r%h%w\ %)
+set statusline+=%1*%=
 set statusline+=%0*%(\ %{''.(&fenc!=''?&fenc:&enc).''}[%{&ff}]%)
 set statusline+=%0*%(\ %04l/%02v\ (%3P/%L)\ %)
 
