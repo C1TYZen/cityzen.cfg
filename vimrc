@@ -103,14 +103,8 @@ noremap  <silent> <C-S> :update<CR>
 vnoremap <silent> <C-S> <C-C>:update<CR>
 inoremap <silent> <C-S> <C-O>:update<CR>
 
-" Buffers
-map bn :bn<CR>
-map bp :bp<CR>
-map bd :bp<CR> :bd#<CR>
-map bl :buffers<CR>
-
-" !!! For lisp expressions, first you need to start REPL in terminal !!!
-vnoremap <silent> <leader>ev :<C-U>call ExecOnTerm()<CR>
+" Tabs
+map tg :tabprevious<CR>
 
 " opens search results in a window and highlight the matches
 " example 'Grep --include \*.c printf .'
