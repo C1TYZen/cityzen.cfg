@@ -121,11 +121,12 @@ nnoremap <C-f> :NERDTreeFind<CR>
 " STATUSLINE
 "============
 
+set showtabline=2
 set laststatus=2
 set statusline=
-set statusline+=%0*%(\ %{&paste?'*PASTE*':''}%)
-set statusline+=%0*%(\ %<[%Y]\ %t\ %m%r%h%w\ %)
 set statusline+=%1*%=
+set statusline+=%0*%(\ %{&paste?'*PASTE*':''}%)
+set statusline+=%0*%(\ %<[%Y]%m%r%h%w\ %)
 set statusline+=%0*%(\ %{''.(&fenc!=''?&fenc:&enc).''}[%{&ff}]%)
 set statusline+=%0*%(\ [%l:%v]\ (%P/%L)\ %)
 
