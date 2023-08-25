@@ -30,7 +30,7 @@ set wildmenu
 set showcmd
 
 set colorcolumn=80
-set cursorline
+" set cursorline
 
 set splitright
 set splitbelow
