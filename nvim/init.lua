@@ -21,56 +21,45 @@ vim.opt.gdefault = true
 
 -- Show unprintable
 vim.opt.list = true
-vim.opt.listchars = {tab = '⁞ ', eol = '¬', trail = '·'}
+-- eol = '¬'
+vim.opt.listchars = {tab = '⁞ ', trail = '·', lead = '░'}
 
 -- Also work under ru
 vim.opt.langmap = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
 
 vim.opt.colorcolumn = "80"
 
--- vim.opt.showtabline = 2
+vim.opt.showtabline = 2
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+vim.api.nvim_create_autocmd("BufReadPost", {
+	pattern = {"*"},
+	callback = function()
+		if vim.fn.line("'\"") > 1 and vim.fn.line("'\"") <= vim.fn.line("$") then
+			vim.api.nvim_exec("normal! g'\"",false)
+		end
+	end
+})
+
 local function git_branch()
-    local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-    if string.len(branch) > 0 then
-        return branch
-    else
-        return ":"
-    end
+	local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+	if string.len(branch) > 0 then
+		return branch
+	else
+		return ":"
+	end
 end
 
-local function statusline()
-    local set_color_1 = "%#PmenuSel#"
-    local branch = git_branch()
-    local set_color_2 = "%#LineNr#"
-    local file_name = " %f"
-    local modified = "%m"
-    local align_right = "%="
-    local fileencoding = " %{&fileencoding?&fileencoding:&encoding}"
-    local fileformat = " [%{&fileformat}]"
-    local filetype = " %y"
-    local percentage = " %p%%"
-    local linecol = " %l:%c"
-
-    return string.format(
-        "%s %s %s%s%s%s%s%s%s%s%s",
-        set_color_1,
-        branch,
-        set_color_2,
-        file_name,
-        modified,
-        align_right,
-        filetype,
-        fileencoding,
-        fileformat,
-        percentage,
-        linecol
-    )
-end
-
-vim.opt.statusline = statusline()
+vim.opt.statusline = string.format("%s %s %s %s %s %s %s",
+	"%#PmenuSel#",
+	git_branch(),
+	"%#CursorLine#",
+	"%=[%Y]",
+	"%{''.(&fenc?&fenc:&enc).''}[%{&ff}]",
+	"[%l:%c]",
+	"(%p%%/%L)"
+)
 
 -- Install lazy.nvim as plugin manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -96,8 +85,7 @@ require('lazy').setup({
 			vim.api.nvim_set_var('polyglot_disabled', {'perl'})
 		end,
 	},
-	{
-		'morhetz/gruvbox',
+	{ 'morhetz/gruvbox',
 		lazy = false,
 		priority = 1000,
 		config = function()
@@ -106,19 +94,10 @@ require('lazy').setup({
 			vim.cmd([[colorscheme gruvbox]])
 		end,
 	},
-	{
-		"folke/tokyonight.nvim",
-		lazy = true,
-		-- config = function()
-		--   -- load the colorscheme here
-		--   vim.cmd([[colorscheme tokyonight]])
-		-- end,
-	},
 	{ 'nvim-telescope/telescope-fzf-native.nvim',
 		build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
 	},
-	{
-		'nvim-telescope/telescope.nvim', tag = '0.1.1',
+	{ 'nvim-telescope/telescope.nvim', tag = '0.1.1',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		config = function()
 			local telescope = require('telescope')
@@ -157,8 +136,7 @@ require('lazy').setup({
 			}
 		end
 	},
-	{
-		'neovim/nvim-lspconfig',
+	{ 'neovim/nvim-lspconfig',
 		config = function()
 			-- Setup language servers.
 			local lspconfig = require('lspconfig')
@@ -209,8 +187,7 @@ require('lazy').setup({
 			})
 		end
 	},
-	{
-		'hrsh7th/nvim-cmp',
+	{ 'hrsh7th/nvim-cmp',
 		dependencies = {
 			'neovim/nvim-lspconfig',
 			'hrsh7th/cmp-nvim-lsp',
@@ -289,8 +266,7 @@ require('lazy').setup({
 			}
 		end,
 	},
-	{
-		'stevearc/aerial.nvim',
+	{ 'stevearc/aerial.nvim',
 		dependencies = { 'neovim/nvim-lspconfig', },
 		config = function()
 			require('aerial').setup({

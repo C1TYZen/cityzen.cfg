@@ -27,6 +27,7 @@ set number
 set relativenumber
 
 set wildmenu
+set wildignorecase
 set showcmd
 
 set colorcolumn=80
