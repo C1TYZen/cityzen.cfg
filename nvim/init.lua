@@ -21,8 +21,14 @@ vim.opt.gdefault = true
 
 -- Show unprintable
 vim.opt.list = true
--- eol = '¬'
-vim.opt.listchars = {tab = '⁞ ', trail = '·', lead = '░'}
+vim.opt.listchars = {
+	tab = "⁞ ",
+	trail = "·",
+	lead = "░",
+	leadmultispace = "⁞   ",
+	nbsp = "~",
+	-- eol = "¬",
+}
 
 -- Also work under ru
 vim.opt.langmap = 'ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz'
@@ -33,6 +39,10 @@ vim.opt.showtabline = 2
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+vim.opt.mouse = ni
+vim.keymap.set('n', 'tg', 'gT')
+
+-- Jump to the last position in file
 vim.api.nvim_create_autocmd("BufReadPost", {
 	pattern = {"*"},
 	callback = function()
@@ -43,7 +53,8 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 })
 
 local function git_branch()
-	local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+	local branch =
+		vim.fn.system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
 	if string.len(branch) > 0 then
 		return branch
 	else
@@ -51,11 +62,10 @@ local function git_branch()
 	end
 end
 
-vim.opt.statusline = string.format("%s %s %s %s %s %s %s",
+vim.opt.statusline = string.format("%s %s %s %s %s %s",
 	"%#PmenuSel#",
 	git_branch(),
-	"%#CursorLine#",
-	"%=[%Y]",
+	"%0*%=[%Y]",
 	"%{''.(&fenc?&fenc:&enc).''}[%{&ff}]",
 	"[%l:%c]",
 	"(%p%%/%L)"
@@ -111,7 +121,7 @@ require('lazy').setup({
 						override_generic_sorter = true,  -- override the generic sorter
 						override_file_sorter = true,     -- override the file sorter
 						case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-																						 -- the default case_mode is "smart_case"
+														 -- the default case_mode is "smart_case"
 					}
 				}
 			}
@@ -234,7 +244,8 @@ require('lazy').setup({
 			-- Set configuration for specific filetype.
 			cmp.setup.filetype('gitcommit', {
 				sources = cmp.config.sources({
-					{ name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+					-- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+					{ name = 'git' },
 				}, {
 					{ name = 'buffer' },
 				})
