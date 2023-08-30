@@ -111,10 +111,13 @@ require('lazy').setup({
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		config = function()
 			local telescope = require('telescope')
-
 			telescope.setup{
-				-- defaults = {
-				-- }
+				defaults = {
+					mappings = {
+						i = { ["<CR>"] = require("telescope.actions").select_tab },
+						n = { ["<CR>"] = require("telescope.actions").select_tab },
+					}
+				},
 				extensions = {
 					fzf = {
 						fuzzy = true,                    -- false will only do exact matching
@@ -132,9 +135,11 @@ require('lazy').setup({
 			local builtin = require('telescope.builtin')
 			vim.keymap.set('n', '<C-p>', builtin.find_files, {})
 			vim.keymap.set('n', '<leader>ft', builtin.treesitter, {})
-			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+			-- ripgrep required!!!
+			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 		end
 	},
 	{ "nvim-treesitter/nvim-treesitter",
