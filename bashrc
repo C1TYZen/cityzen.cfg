@@ -1,27 +1,9 @@
-# Source global definitions.
-if [ -r /etc/bashrc ]; then
-	. /etc/bashrc
-fi
-
 # For reomote host, when use kitty with remote tmux
 TERM="xterm-256color"
 
 PS1=""
-PS1+="\e[01;95m\u\e[m@\e[01;32m\h "
-PS1+="\e[01;34m"
-# PS1+="[j\j] "
-PS1+="[\t] "
-PS1+="[\w]\e"
-PS1+="[m\n"
-PS1+="$ "
-
-if [ -d "$HOME/.bin" ] ;
-	then PATH="$HOME/.bin:$PATH"
-fi
-
-if [ -d "$HOME/.local/bin" ] ;
-	then PATH="$HOME/.local/bin:$PATH"
-fi
+PS1+="[\e[01;34m\w\e[m]\n"
+PS1+="\[\e[01;32m\]\u\[\e[00;33m\] λ\[\e[m\] "
 
 alias less='less --RAW-CONTROL-CHARS'
 alias grep='grep --color'
