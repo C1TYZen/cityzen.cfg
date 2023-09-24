@@ -1,6 +1,9 @@
 # For reomote host, when use kitty with remote tmux
 TERM="xterm-256color"
 
+export HISTSIZE=4096
+export HISTCONTROL=ignoreboth
+
 PS1=""
 PS1+="[\e[01;34m\w\e[m]\n"
 PS1+="\[\e[01;32m\]\u\[\e[00;33m\] λ\[\e[m\] "

@@ -65,7 +65,7 @@ end
 vim.opt.statusline = string.format("%s %s %s %s %s %s",
 	"%#PmenuSel#",
 	git_branch(),
-	"%0*%=[%Y]",
+	"%0*%=[%Y%R%W%H]",
 	"%{''.(&fenc?&fenc:&enc).''}[%{&ff}]",
 	"[%l:%c]",
 	"(%p%%/%L)"
@@ -310,7 +310,7 @@ require('lazy').setup({
 
 local custom_palette = {
 	dark0_hard     = '#1d2021',
-	-- dark0       = '#282828',
+	-- dark0          = '#282828',
 	dark0          = "#000000",
 	dark0_soft     = '#32302f',
 	dark1          = '#3c3836',
