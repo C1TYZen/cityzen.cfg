@@ -65,7 +65,7 @@ end
 vim.opt.statusline = string.format("%s %s %s %s %s %s",
 	"%#PmenuSel#",
 	git_branch(),
-	"%0*%=[%Y%R%W%H]",
+	"%0* %f%=[%Y%R%W%H]",
 	"%{''.(&fenc?&fenc:&enc).''}[%{&ff}]",
 	"[%l:%c]",
 	"(%p%%/%L)"
