@@ -1,24 +1,49 @@
-# For reomote host, when use kitty with remote tmux
-TERM="xterm-256color"
+# ~/.bashrc
+
+# Source global definitions.
+if [ -r /etc/bashrc ]; then
+	. /etc/bashrc
+fi
 
 export HISTSIZE=4096
-export HISTCONTROL=ignoreboth
+export HISTCONTROL=ignoredups:erasedups
 
-PS1=""
-PS1+="[\e[01;34m\w\e[m]\n"
-PS1+="\[\e[01;32m\]\u\[\e[00;33m\] λ\[\e[m\] "
+GC="\[\e[01;32m\]"
+BC="\[\e[01;34m\]"
+OC="\[\e[00;33m\]"
+XC="\[\e[m\]"
+PS1="$GC[$BC\w$GC]\n$OC>$XC "
+
+LS_OPS='--color=auto --group-directories-first'
+alias ls='exa ${LS_OPS}'
+alias ll='exa -l ${LS_OPS}'
+alias la='exa -la ${LS_OPS}'
 
 alias less='less --RAW-CONTROL-CHARS'
 alias grep='grep --color'
 
-LS_OPTS='--color=auto --group-directories-first'
-alias ls='ls ${LS_OPTS}'
-alias la='ls -la ${LS_OPTS}'
-alias ll='ls -l ${LS_OPTS}'
+alias vim='nvim'
+alias vimvs='nvim -O'
+alias vimt='nvim -p'
 
-alias git-log='git log --graph \
-		--pretty="%Cred%h%Creset -%C(auto)%d %Cgreen(%ad) %C(bold blue)<%an>%n%Creset%B%N" \
-		--date=short'
+alias tmx='tmux'
+alias tmxa='tmux attach'
+alias tmxl='tmux ls'
+alias tmxn='tmux new -s '
+
+alias git-log="git log --graph --date=short \
+	--pretty='%Cred%h%Creset -%C(auto)%d %Cgreen(%ad) %C(bold blue)<%an>%n%Creset%B%N%n'"
+
+alias vpn_on='sudo /usr/sbin/openvpn \
+	--config /etc/openvpn/client/elvees2fa.conf \
+	--auth-user-pass /etc/openvpn/client/pass.txt'
+
+# export PATH="$HOME/.local/bin:$PATH"
+# export PATH="$HOME/neovim/bin:$PATH"
+# . "$HOME/.cargo/env"
+
+# For reomote host, when use kitty with remote tmux
+# TERM="xterm-256color"
 
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
