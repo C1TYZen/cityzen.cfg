@@ -38,9 +38,9 @@ alias vpn_on='sudo /usr/sbin/openvpn \
 	--config /etc/openvpn/client/elvees2fa.conf \
 	--auth-user-pass /etc/openvpn/client/pass.txt'
 
-# export PATH="$HOME/.local/bin:$PATH"
-# export PATH="$HOME/neovim/bin:$PATH"
-# . "$HOME/.cargo/env"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/neovim/bin:$PATH"
+. "$HOME/.cargo/env"
 
 # For reomote host, when use kitty with remote tmux
 # TERM="xterm-256color"
