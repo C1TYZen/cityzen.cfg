@@ -141,7 +141,6 @@ require('lazy').setup({
 			vim.keymap.set('n', '<leader>ft', builtin.treesitter, {})
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-
 			-- ripgrep required!!!
 			vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
 		end
@@ -206,7 +205,7 @@ require('lazy').setup({
 			})
 		end
 	},
-	{ 'hrsh7th/nvim-cmp',
+	{ 'hrsh7th/nvim-cmp', -- For autocomplite everywhere
 		dependencies = {
 			'neovim/nvim-lspconfig',
 			'hrsh7th/cmp-nvim-lsp',

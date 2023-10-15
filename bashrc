@@ -23,27 +23,28 @@ alias less='less --RAW-CONTROL-CHARS'
 alias grep='grep --color'
 
 alias vim='nvim'
+alias vims='nvim -o'
+alias vimsp='nvim -o'
+alias vimv='nvim -O'
 alias vimvs='nvim -O'
 alias vimt='nvim -p'
+alias vimtb='nvim -p'
 
 alias tmx='tmux'
 alias tmxa='tmux attach'
 alias tmxl='tmux ls'
 alias tmxn='tmux new -s '
 
-alias git-log="git log --graph --date=short \
+alias gitlog="git log --graph --date=short \
 	--pretty='%Cred%h%Creset -%C(auto)%d %Cgreen(%ad) %C(bold blue)<%an>%n%Creset%B%N%n'"
 
-alias vpn_on='sudo /usr/sbin/openvpn \
+alias vpnon='sudo /usr/sbin/openvpn \
 	--config /etc/openvpn/client/elvees2fa.conf \
 	--auth-user-pass /etc/openvpn/client/pass.txt'
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/neovim/bin:$PATH"
 . "$HOME/.cargo/env"
-
-# For reomote host, when use kitty with remote tmux
-# TERM="xterm-256color"
 
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
