@@ -12,7 +12,7 @@ GC="\[\e[01;32m\]"
 BC="\[\e[01;34m\]"
 OC="\[\e[00;33m\]"
 XC="\[\e[m\]"
-PS1="$GC[$BC\w$GC]\n$OC>$XC "
+PS1="$GC[$BC\w$GC]$XC\n$OC>$XC "
 
 LS_OPS='--color=auto --group-directories-first'
 alias ls='exa ${LS_OPS}'
