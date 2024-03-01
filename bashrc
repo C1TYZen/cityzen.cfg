@@ -17,9 +17,9 @@ XC="\[\e[m\]"
 PS1="$GC[$BC\w$GC]$XC\n$OC>$XC "
 
 LS_OPS='--color=auto --group-directories-first'
-alias ls='exa ${LS_OPS}'
-alias ll='exa -l ${LS_OPS}'
-alias la='exa -la ${LS_OPS}'
+alias ls='ls ${LS_OPS}'
+alias ll='ls -l ${LS_OPS}'
+alias la='ls -la ${LS_OPS}'
 
 alias less='less --RAW-CONTROL-CHARS'
 alias grep='grep --color'
