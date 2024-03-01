@@ -108,9 +108,6 @@ require('lazy').setup({
 			vim.cmd("colorscheme gruvbox")
 		end,
 	},
-	{ 'nvim-telescope/telescope-fzf-native.nvim',
-		build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
-	},
 	{ 'nvim-telescope/telescope.nvim', tag = '0.1.1',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		config = function()
@@ -121,26 +118,14 @@ require('lazy').setup({
 						i = { ["<CR>"] = require("telescope.actions").select_tab },
 						n = { ["<CR>"] = require("telescope.actions").select_tab },
 					}
-				},
-				extensions = {
-					fzf = {
-						fuzzy = true,                    -- false will only do exact matching
-						override_generic_sorter = true,  -- override the generic sorter
-						override_file_sorter = true,     -- override the file sorter
-						case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-														 -- the default case_mode is "smart_case"
-					}
 				}
 			}
 
-			-- telescope.load_extension('fzy_native')
-			telescope.load_extension('fzf')
-
 			local builtin = require('telescope.builtin')
 			vim.keymap.set('n', '<C-p>', builtin.find_files, {})
-			vim.keymap.set('n', '<leader>ft', builtin.treesitter, {})
+			vim.keymap.set('n', '<leader>ts', builtin.treesitter, {})
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+			vim.keymap.set('n', '<leader>ht', builtin.help_tags, {})
 			-- ripgrep required!!!
 			vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
 		end

@@ -5,6 +5,8 @@ if [ -r /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+bind 'tab: menu-complete'
+
 export HISTSIZE=4096
 export HISTCONTROL=ignoredups:erasedups
 
@@ -43,8 +45,7 @@ alias vpnon='sudo /usr/sbin/openvpn \
 	--auth-user-pass /etc/openvpn/client/pass.txt'
 
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/neovim/bin:$PATH"
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"
 
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
