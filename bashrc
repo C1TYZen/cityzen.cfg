@@ -1,11 +1,12 @@
 # ~/.bashrc
 
-# Source global definitions.
+# Source global definitions
 if [ -r /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-bind 'tab: menu-complete'
+# Load inputrc
+bind -f ~/.inputrc
 
 export HISTSIZE=4096
 export HISTCONTROL=ignoredups:erasedups
