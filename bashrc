@@ -45,9 +45,6 @@ alias vpnon='sudo /usr/sbin/openvpn \
 	--config /etc/openvpn/client/elvees2fa.conf \
 	--auth-user-pass /etc/openvpn/client/pass.txt'
 
-export PATH="$HOME/.local/bin:$PATH"
-# . "$HOME/.cargo/env"
-
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
 ex ()
