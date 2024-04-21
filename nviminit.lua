@@ -109,7 +109,10 @@ require('lazy').setup({
 		end,
 	},
 	{ 'nvim-telescope/telescope.nvim', tag = '0.1.1',
-		dependencies = { 'nvim-lua/plenary.nvim' },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope-live-grep-args.nvim"
+		},
 		config = function()
 			local telescope = require('telescope')
 			telescope.setup{
@@ -122,12 +125,14 @@ require('lazy').setup({
 			}
 
 			local builtin = require('telescope.builtin')
+			local ext = telescope.extensions
 			vim.keymap.set('n', '<C-p>', builtin.find_files, {})
 			vim.keymap.set('n', '<leader>ts', builtin.treesitter, {})
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 			vim.keymap.set('n', '<leader>ht', builtin.help_tags, {})
 			-- ripgrep required!!!
-			vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
+			-- vim.keymap.set('n', '<leader>lg', builtin.live_grep, {})
+			vim.keymap.set("n", "<leader>lg", ext.live_grep_args.live_grep_args, {})
 		end
 	},
 	{ "nvim-treesitter/nvim-treesitter",
