@@ -101,10 +101,9 @@ require('lazy').setup({
 			vim.g.gruvbox_italic = 1
 
 			-- setup must be called before loading the colorscheme
-			local custom_palette = {dark0 = "#000000"}
-			require("gruvbox").setup({
-				palette_overrides = custom_palette,
-			})
+			require("gruvbox").setup {
+				palette_overrides = { dark0 = "#000000" },
+			}
 			vim.cmd("colorscheme gruvbox")
 		end,
 	},
@@ -118,8 +117,14 @@ require('lazy').setup({
 			telescope.setup{
 				defaults = {
 					mappings = {
-						i = { ["<CR>"] = require("telescope.actions").select_tab },
-						n = { ["<CR>"] = require("telescope.actions").select_tab },
+						i = {
+							["<CR>"] = require("telescope.actions").select_tab,
+							["<S-o>"] = require("telescope.actions").select_vertical
+						},
+						n = {
+							["<CR>"] = require("telescope.actions").select_tab,
+							["<S-o>"] = require("telescope.actions").select_vertical
+						},
 					}
 				}
 			}
@@ -155,6 +160,12 @@ require('lazy').setup({
 					['rust-analyzer'] = {},
 				},
 			}
+
+			vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+				vim.lsp.diagnostic.on_publish_diagnostics, {
+					virtual_text = false
+				}
+			)
 
 			-- Global mappings.
 			-- See `:help vim.diagnostic.*` for documentation on any of the below functions

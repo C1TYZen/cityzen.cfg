@@ -15,35 +15,33 @@ GC="\[\e[01;32m\]"
 BC="\[\e[01;34m\]"
 OC="\[\e[00;33m\]"
 XC="\[\e[m\]"
-PS1="$GC[$BC\W$GC]$XC\n$OC>$XC "
+PS1="$GC[$BC\W$GC]$XC $OC>$XC "
 
-LS_OPS='-h --color=auto --group-directories-first'
-alias ls='ls ${LS_OPS}'
-alias ll='ls -l ${LS_OPS}'
-alias la='ls -la ${LS_OPS}'
+LS_OPS="-h --color=auto --width=$((COLUMNS/2)) --group-directories-first"
+alias ls="ls ${LS_OPS}"
+alias l="ls ${LS_OPS}"
+alias la="ls -A ${LS_OPS}"
+alias ll="ls -l ${LS_OPS}"
+alias lla="ls -lA ${LS_OPS}"
 
-alias less='less --RAW-CONTROL-CHARS'
-alias grep='grep --color'
+alias less="less --RAW-CONTROL-CHARS"
+alias grep="grep --color"
 
-alias vim='nvim'
-alias vims='nvim -o'
-alias vimsp='nvim -o'
-alias vimv='nvim -O'
-alias vimvs='nvim -O'
-alias vimt='nvim -p'
-alias vimtb='nvim -p'
+alias vim="nvim"
+alias vims="nvim -o"
+alias vimsp="nvim -o"
+alias vimv="nvim -O"
+alias vimvs="nvim -O"
+alias vimt="nvim -p"
+alias vimtb="nvim -p"
 
-alias tmx='tmux'
-alias tmxa='tmux attach'
-alias tmxl='tmux ls'
-alias tmxn='tmux new -s '
+alias tmx="tmux"
+alias tmxa="tmux attach"
+alias tmxl="tmux ls"
+alias tmxn="tmux new -s "
 
 alias gitlog="git log --graph --date=short \
 	--pretty='%Cred%h%Creset -%C(auto)%d %Cgreen(%ad) %C(bold blue)<%an>%n%Creset%B%N%n'"
-
-alias vpnon='sudo /usr/sbin/openvpn \
-	--config /etc/openvpn/client/elvees2fa.conf \
-	--auth-user-pass /etc/openvpn/client/pass.txt'
 
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
