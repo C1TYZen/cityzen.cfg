@@ -10,6 +10,7 @@ bind -f ~/.inputrc
 
 export HISTSIZE=4096
 export HISTCONTROL=ignoredups:erasedups
+export EDITOR=vim
 
 GC="\[\e[01;32m\]"
 BC="\[\e[01;34m\]"
