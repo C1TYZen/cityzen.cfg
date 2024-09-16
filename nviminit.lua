@@ -40,7 +40,6 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 
 vim.opt.mouse = ni
-vim.keymap.set('n', 'tg', 'gT')
 
 -- Jump to the last position in file
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -84,6 +83,14 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.rtp:prepend(lazypath)
+
+-- NASM highlight
+vim.api.nvim_create_autocmd({"BufEnter"}, {
+	pattern = {"*.nasm"},
+	callback = function()
+		vim.api.nvim_exec("set filetype=nasm", false)
+	end
+})
 
 -- Install plugins using lazy
 require("lazy").setup({
@@ -299,23 +306,9 @@ require("lazy").setup({
 			vim.keymap.set("n", "<F8>", "<cmd>AerialToggle!<CR>")
 		end,
 	},
-	{
-	  "folke/which-key.nvim",
-		event = "VeryLazy",
-		init = function()
-			vim.o.timeout = true
-			vim.o.timeoutlen = 100
-		end,
-		opts = {
-			layout = {
-				height = { min = 4, max = 25 }, -- min and max height of the columns
-				width = { min = 4, max = 40 }, -- min and max width of the columns
-				spacing = 2, -- spacing between columns
-				align = "left", -- align columns left, center or right
-			},
-		}
-	}
 })
+
+vim.keymap.set("n", "tg", "gT")
 
 vim.filetype.add({
 	extension = {
@@ -339,6 +332,8 @@ vim.filetype.add({
 		rchit = "glsl",
 		rahit = "glsl",
 		rmiss = "glsl",
+		nasm =  "nasm",
+		asm =   "nasm",
 		-- comp = "glsl",
 	}
 })
